@@ -1,0 +1,30 @@
+# ============================================
+#  NO subir a GitHub
+# ============================================
+
+# --- Base de datos: contiene contraseñas, mensajes de personas e inscripciones ---
+# Se excluye el contenido, pero SÍ se conserva el .htaccess que la protege.
+data/*
+!data/.htaccess
+*.sqlite
+*.sqlite3
+*.db
+
+# --- Versión estática vieja, reemplazada por index.php ---
+index.html
+
+# --- Imágenes subidas desde el panel (pueden ser fotos privadas) ---
+images/subidas/
+
+# --- Configuración local (apunta a rutas de esta computadora) ---
+php-local.ini
+INICIAR SITIO.bat
+router.php
+serve.py
+
+# --- Basura del sistema ---
+Thumbs.db
+desktop.ini
+.DS_Store
+*.log
+*.tmp

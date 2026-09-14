@@ -1,0 +1,42 @@
+# ============================================================
+#  Shanti Lanka Ashram — configuración del servidor (hosting)
+#  Este archivo lo lee Apache, que es lo que usan casi todos
+#  los hostings. En tu computadora no hace nada.
+# ============================================================
+
+# ---- La portada es index.php ----
+DirectoryIndex index.php index.html
+
+# ---- Bloquear archivos internos ----
+<FilesMatch "\.(sqlite|ini|bat|md|log)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# ---- No listar el contenido de las carpetas ----
+Options -Indexes
+
+# ---- Nada de PHP dentro de la carpeta de imágenes subidas ----
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Si el hosting tiene certificado, forzar https
+    RewriteCond %{HTTPS} off
+    RewriteCond %{HTTP:X-Forwarded-Proto} !https
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+    # Impedir que se ejecute cualquier script subido por error
+    RewriteRule ^images/subidas/.*\.(php|phtml|phar|cgi|pl)$ - [F,L]
+</IfModule>
+
+# ---- Cabeceras de seguridad ----
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
