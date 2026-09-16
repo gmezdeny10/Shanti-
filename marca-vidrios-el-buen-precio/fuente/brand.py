@@ -40,15 +40,16 @@ def text_width(name, text, size, tracking=0.0):
     return text_path(name, text, size, tracking)[1]
 
 # ---------------------------------------------------------------- paleta
-NAVY      = "#0E1B2A"   # tinta / contorno
-NAVY_DEEP = "#0A1523"
-GLASS_A1  = "#8FE9F7"   # cara iluminada
-GLASS_A2  = "#31B4D9"
-GLASS_B1  = "#2FA5CD"   # cara en sombra
-GLASS_B2  = "#1A7CA6"
-RED       = "#E63946"
+NAVY      = "#8E1015"   # tinta / contorno (rojo profundo)
+NAVY_DEEP = "#6B0A0E"   # fondo oscuro
+GLASS_A1  = "#FFE98A"   # cara iluminada
+GLASS_A2  = "#FFC61A"
+GLASS_B1  = "#FFB300"   # cara en sombra
+GLASS_B2  = "#E08A00"
+RED       = "#D7262C"   # acento (tiradores, linea)
+YELLOW    = "#FFC61A"
 WHITE     = "#FFFFFF"
-MIST      = "#EEF4F8"
+CREAM     = "#FFF7E8"
 
 # --------------------------------------------------- geometria del icono
 # vertice central (cercano al observador) y aristas exteriores
@@ -92,9 +93,10 @@ def panes(quad, fill, cols=2, rows=2, margin=0.085, gap=0.038):
             out.append(quad_poly(quad, u0, u0 + wu, v0, v0 + hv, fill=fill))
     return "".join(out)
 
-def icon(dark_bg=True, mono=None):
+def icon(dark_bg=True, mono=None, outline=None):
     """Marca grafica sobre viewBox 0 0 1000 1000."""
     ink = NAVY if mono is None else mono
+    edge = outline or ink   # contorno exterior (blanco sobre fondos rojos)
     frame = WHITE if mono is None else "none"
     gl_a = "url(#glassA)" if mono is None else mono
     gl_b = "url(#glassB)" if mono is None else mono
@@ -105,7 +107,7 @@ def icon(dark_bg=True, mono=None):
     sil = [(CX, TOP_C), (RX, TOP_O), (RX, BOT_O), (CX, BOT_C), (LX, BOT_O), (LX, TOP_O)]
     g = []
     # cuerpo blanco + contorno
-    g.append(poly(sil, fill=frame if frame != "none" else "none", stroke=ink,
+    g.append(poly(sil, fill=frame if frame != "none" else "none", stroke=edge,
                   stroke_width=sw, stroke_linejoin="round"))
     # vidrios
     g.append('<g%s>%s</g>' % (op_a, panes(LEFT, gl_a)))
@@ -139,10 +141,10 @@ def defs(dark_bg=True):
 <linearGradient id="glassB" x1="1" y1="0" x2="0.4" y2="1">
   <stop offset="0" stop-color="%s"/><stop offset="1" stop-color="%s"/></linearGradient>
 <linearGradient id="bgDark" x1="0" y1="0" x2="1" y2="1">
-  <stop offset="0" stop-color="#16304A"/><stop offset="1" stop-color="%s"/></linearGradient>
+  <stop offset="0" stop-color="#C4171F"/><stop offset="1" stop-color="%s"/></linearGradient>
 <radialGradient id="bgGlow" cx="0.5" cy="0.42" r="0.62">
-  <stop offset="0" stop-color="#2A5A80" stop-opacity="0.75"/>
-  <stop offset="1" stop-color="#2A5A80" stop-opacity="0"/></radialGradient>
+  <stop offset="0" stop-color="#FF7A2F" stop-opacity="0.45"/>
+  <stop offset="1" stop-color="#FF7A2F" stop-opacity="0"/></radialGradient>
 %s
 </defs>''' % (GLASS_A1, GLASS_A2, GLASS_B1, GLASS_B2, NAVY_DEEP,
               clip_panes())
@@ -153,11 +155,11 @@ BBOX = (LX - 14, TOP_C - 14, RX + 14, BOT_C + 14)
 BBOX_W = BBOX[2] - BBOX[0]
 BBOX_H = BBOX[3] - BBOX[1]
 
-def icon_fit(x, y, height=None, width=None, mono=None):
+def icon_fit(x, y, height=None, width=None, mono=None, outline=None):
     """Coloca el icono con su altura (o ancho) visual real, origen arriba-izq."""
     if height is not None:
         s = height / BBOX_H
     else:
         s = width / BBOX_W
     return '<g transform="translate(%.3f,%.3f) scale(%.5f) translate(%.2f,%.2f)">%s</g>' % (
-        x, y, s, -BBOX[0], -BBOX[1], icon(mono=mono))
+        x, y, s, -BBOX[0], -BBOX[1], icon(mono=mono, outline=outline))

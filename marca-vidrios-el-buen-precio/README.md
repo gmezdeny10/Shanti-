@@ -1,8 +1,8 @@
 # Vidrios el buen precio — kit de marca
 
 Rediseño del logo original manteniendo su identidad (el ventanal en perspectiva,
-el vidrio celeste, el acento rojo y el nombre completo con su eslogan), pero
-reconstruido en vectores y con proporciones pensadas para redes sociales.
+el nombre completo y su eslogan), reconstruido en vectores, con la paleta de la
+marca en rojo y amarillo y proporciones pensadas para redes sociales.
 
 > Nota: esta carpeta es solo material de marca. No forma parte del sitio web que
 > vive en el resto del repositorio.
@@ -16,19 +16,23 @@ reconstruido en vectores y con proporciones pensadas para redes sociales.
 | Texto largo debajo del dibujo, se cortaba en el recorte circular | Versión de avatar con el texto dentro del círculo seguro, y versión solo ícono |
 | Trazos y brillos irregulares | Trazo uniforme, esquinas redondeadas, brillo limpio dentro del vidrio |
 | Tipografía itálica genérica | Poppins (geométrica, moderna), con el eslogan justificado al ancho del nombre |
+| Celeste, rojo, amarillo y negro mezclados | Paleta cerrada: rojo, amarillo y blanco |
 | Sin versiones alternativas | Claro, oscuro, monocromo, horizontal, vertical, portadas |
 
 ## Paleta
 
 | Uso | Color | HEX |
 |---|---|---|
-| Tinta / contorno | azul noche | `#0E1B2A` |
-| Fondo oscuro | azul profundo | `#0A1523` |
-| Vidrio claro | celeste | `#8FE9F7` → `#31B4D9` |
-| Vidrio en sombra | azul | `#2FA5CD` → `#1A7CA6` |
-| Acento (tiradores, línea) | rojo | `#E63946` |
+| Tinta / contorno | rojo profundo | `#8E1015` |
+| Fondo oscuro | rojo oscuro | `#C4171F` → `#6B0A0E` |
+| Vidrio iluminado | amarillo | `#FFE98A` → `#FFC61A` |
+| Vidrio en sombra | ámbar | `#FFB300` → `#E08A00` |
+| Acento (tiradores, línea) | rojo vivo | `#D7262C` |
 | Marco | blanco | `#FFFFFF` |
-| Fondo claro | gris azulado | `#F3F7FA` |
+| Fondo claro | crema | `#FFF7E8` |
+
+Sobre fondo rojo el contorno del ícono va en blanco, para que la silueta no se
+pierda contra el fondo. Sobre fondo claro va en rojo profundo.
 
 ## Tipografía
 
@@ -47,7 +51,8 @@ el eslogan. Es gratuita: https://fonts.google.com/specimen/Poppins
 | Membrete, presupuestos, sitio web | `logo-horizontal.png` | 2400 px de ancho |
 | Sobre fotos o fondos oscuros | `logo-horizontal-blanco.png` | 2400 px |
 | Marca de agua en fotos de trabajos | `logo-monocromo-blanco.png` | 2400 px |
-| Sello, factura, vinilo de un color | `logo-monocromo-negro.png` | 2400 px |
+| Sello, factura, vinilo de un color | `logo-monocromo-rojo.png` | 2400 px |
+| Fotocopia, fax, grabado | `logo-monocromo-negro.png` | 2400 px |
 | Flyer, cartel, camiseta | `logo-vertical.png` | 1600 px |
 | Solo la marca gráfica | `icono.png` / `icono.svg` | 1024×1024 |
 
@@ -59,7 +64,7 @@ que hay que darle a una imprenta o a quien haga un cartel.
 1. Dejar alrededor del logo un margen libre igual a la altura de la letra "V".
 2. No estirar ni deformar: escalar siempre proporcional.
 3. No cambiar los colores ni poner el logo a color sobre fondos saturados; para
-   esos casos están las versiones blanca y monocromo.
+   esos casos están las versiones blanca y monocroma.
 4. En avatares no agregar texto extra: el círculo recorta las esquinas.
 5. Tamaño mínimo del logo horizontal: 25 mm impreso / 160 px en pantalla. Más
    chico que eso, usar solo el ícono.

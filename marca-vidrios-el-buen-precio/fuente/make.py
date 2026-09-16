@@ -57,36 +57,39 @@ def bg_dark(w, h):
             '<rect width="%d" height="%d" fill="url(#bgGlow)"/>') % (w, h, w, h)
 
 def bg_light(w, h):
-    return '<rect width="%d" height="%d" fill="#F3F7FA"/>' % (w, h)
+    return '<rect width="%d" height="%d" fill="%s"/>' % (w, h, CREAM)
 
 def avatar(dark=True, with_text=True, transparent=False):
     ink = WHITE if dark else NAVY
-    sub = "#7FDCF2" if dark else RED
+    sub = YELLOW if dark else RED
     bg = None if transparent else (bg_dark(1000, 1000) if dark else bg_light(1000, 1000))
     body = []
     if with_text:
         ih = 400.0
-        body.append(icon_fit((1000 - ih * BBOX_W / BBOX_H) / 2, 205, height=ih))
+        body.append(icon_fit((1000 - ih * BBOX_W / BBOX_H) / 2, 205, height=ih,
+                             outline=WHITE if dark else None))
         t, w = line(EB, "VIDRIOS", 104, tr=0.015, fill=ink)
         body.append('<g transform="translate(%.1f,740)">%s</g>' % (500 - w / 2, t))
         t2, _ = justified(SB, "EL BUEN PRECIO", 46, w, fill=sub)
         body.append('<g transform="translate(%.1f,812)">%s</g>' % (500 - w / 2, t2))
     else:
         ih = 505.0
-        body.append(icon_fit((1000 - ih * BBOX_W / BBOX_H) / 2, (1000 - ih) / 2, height=ih))
+        body.append(icon_fit((1000 - ih * BBOX_W / BBOX_H) / 2, (1000 - ih) / 2, height=ih,
+                             outline=WHITE if dark else None))
     return svg(1000, 1000, "".join(body), bg)
 
 # ------------------------------------------------------------- lockups
 def horizontal(dark=False, tagline=True, mono=None, transparent=True):
     ink = mono or (WHITE if dark else NAVY)
     size = 170
-    wm, w, h = wordmark(size, ink=ink, accent=RED if not mono else ink, tagline=tagline)
+    wm, w, h = wordmark(size, ink=ink, accent=(YELLOW if dark else RED) if not mono else ink, tagline=tagline)
     ih = 330.0
     iw = ih * BBOX_W / BBOX_H
     gap, pad = 78, 70
     W = int(pad * 2 + iw + gap + w)
     H = int(pad * 2 + max(ih, h))
-    body = (icon_fit(pad, (H - ih) / 2, height=ih, mono=mono) +
+    body = (icon_fit(pad, (H - ih) / 2, height=ih, mono=mono,
+                     outline=WHITE if (dark and not mono and not transparent) else None) +
             '<g transform="translate(%.1f,%.1f)">%s</g>' % (pad + iw + gap, (H - h) / 2, wm))
     bg = None if transparent else (bg_dark(W, H) if dark else bg_light(W, H))
     return svg(W, H, body, bg)
@@ -94,13 +97,14 @@ def horizontal(dark=False, tagline=True, mono=None, transparent=True):
 def vertical(dark=False, transparent=True):
     ink = WHITE if dark else NAVY
     size = 150
-    wm, w, h = wordmark(size, ink=ink)
+    wm, w, h = wordmark(size, ink=ink, accent=YELLOW if dark else RED)
     ih = 420.0
     iw = ih * BBOX_W / BBOX_H
     pad, gap = 70, 56
     W = int(max(w, iw) + pad * 2)
     H = int(pad * 2 + ih + gap + h)
-    body = (icon_fit((W - iw) / 2, pad, height=ih) +
+    body = (icon_fit((W - iw) / 2, pad, height=ih,
+                     outline=WHITE if (dark and not transparent) else None) +
             '<g transform="translate(%.1f,%.1f)">%s</g>' % ((W - w) / 2, pad + ih + gap, wm))
     bg = None if transparent else (bg_dark(W, H) if dark else bg_light(W, H))
     return svg(W, H, body, bg)
@@ -108,10 +112,10 @@ def vertical(dark=False, transparent=True):
 # ------------------------------------------------------------- portadas
 def cover(W, H, size=120, ih=330.0):
     iw = ih * BBOX_W / BBOX_H
-    wm, w, h = wordmark(size, ink=WHITE)
+    wm, w, h = wordmark(size, ink=WHITE, accent=YELLOW)
     total = iw + 64 + w
     x0 = (W - total) / 2
-    body = [icon_fit(x0, (H - ih) / 2, height=ih),
+    body = [icon_fit(x0, (H - ih) / 2, height=ih, outline=WHITE),
             '<g transform="translate(%.1f,%.1f)">%s</g>' % (x0 + iw + 64, (H - h) / 2, wm)]
     return svg(W, H, "".join(body), bg_dark(W, H))
 
@@ -133,7 +137,8 @@ files = [
     ("logo-horizontal-simple",     horizontal(False, tagline=False),    2400),
     ("logo-vertical",              vertical(False),                     1600),
     ("logo-vertical-blanco",       vertical(True),                      1600),
-    ("logo-monocromo-negro",       horizontal(False, mono=NAVY),        2400),
+    ("logo-monocromo-rojo",        horizontal(False, mono="#C1121F"),   2400),
+    ("logo-monocromo-negro",       horizontal(False, mono="#1B1B1B"),   2400),
     ("logo-monocromo-blanco",      horizontal(True, mono=WHITE),        2400),
     ("portada-facebook",           cover(1640, 624),                    1640),
     ("portada-linkedin-youtube",   cover(2048, 1152, size=150, ih=420),  2048),
