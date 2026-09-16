@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """Kit de marca sobre el dibujo original, en dos paletas."""
-import os, sys, cairosvg
+import os, re, sys, cairosvg
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from brand import text_path, text_width
 from shop import PALETAS, gradientes, ventanal_fit, BBOX_W, BBOX_H
@@ -25,7 +25,17 @@ def svg(w, h, pal, body, bg=None):
     return ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 %d %d" width="%d" height="%d">'
             '%s%s%s</svg>') % (w, h, w, h, gradientes(pal), bg or "", body)
 
+_NUM = re.compile(r"-?\d+\.\d+")
+
+def liviano(markup):
+    """Redondea a una decimal: mismo dibujo, archivos bastante mas chicos."""
+    def r(m):
+        v = round(float(m.group()), 1)
+        return ("%g" % v)
+    return _NUM.sub(r, markup)
+
 def write(folder, name, markup, png_w):
+    markup = liviano(markup)
     os.makedirs(os.path.join(folder, "svg"), exist_ok=True)
     os.makedirs(os.path.join(folder, "png"), exist_ok=True)
     p = os.path.join(folder, "svg", name + ".svg")
