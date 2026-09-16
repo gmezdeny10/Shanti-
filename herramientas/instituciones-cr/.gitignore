@@ -1,0 +1,4 @@
+# Archivos oficiales descargados y salidas generadas: no se versionan.
+descargas/
+*.xlsx
+*.csv
