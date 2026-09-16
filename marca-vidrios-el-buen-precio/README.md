@@ -1,78 +1,96 @@
 # Vidrios el buen precio — kit de marca
 
-Rediseño del logo original manteniendo su identidad (el ventanal en perspectiva,
-el nombre completo y su eslogan), reconstruido en vectores, con la paleta de la
-marca en rojo y amarillo y proporciones pensadas para redes sociales.
+El dibujo original, tal cual: el ventanal de cuatro paños en perspectiva, el
+remate rojo del techo, la chapa roja del ángulo, los tiradores de las puertas,
+el reflejo en diagonal y el nombre en itálica con su eslogan.
+
+Lo único que cambió es el color, más la calidad del trazado: ahora está hecho en
+vectores, así que se puede ampliar sin que se pixele.
 
 > Nota: esta carpeta es solo material de marca. No forma parte del sitio web que
 > vive en el resto del repositorio.
 
-## Qué cambió y por qué
+## Dos paletas para elegir
 
-| Antes | Ahora |
-|---|---|
-| Imagen rasterizada (JPG con fondo gris) | Vectores SVG: nítido en cualquier tamaño, fondo transparente disponible |
-| Demasiadas divisiones de vidrio | 4 paños por cara: se sigue leyendo a 40 px |
-| Texto largo debajo del dibujo, se cortaba en el recorte circular | Versión de avatar con el texto dentro del círculo seguro, y versión solo ícono |
-| Trazos y brillos irregulares | Trazo uniforme, esquinas redondeadas, brillo limpio dentro del vidrio |
-| Tipografía itálica genérica | Poppins (geométrica, moderna), con el eslogan justificado al ancho del nombre |
-| Celeste, rojo, amarillo y negro mezclados | Paleta cerrada: rojo, amarillo y blanco |
-| Sin versiones alternativas | Claro, oscuro, monocromo, horizontal, vertical, portadas |
-
-## Paleta
-
-| Uso | Color | HEX |
+| Carpeta | Vidrio | Para qué sirve |
 |---|---|---|
-| Tinta / contorno | rojo profundo | `#8E1015` |
-| Fondo oscuro | rojo oscuro | `#C4171F` → `#6B0A0E` |
-| Vidrio iluminado | amarillo | `#FFE98A` → `#FFC61A` |
-| Vidrio en sombra | ámbar | `#FFB300` → `#E08A00` |
-| Acento (tiradores, línea) | rojo vivo | `#D7262C` |
-| Marco | blanco | `#FFFFFF` |
-| Fondo claro | crema | `#FFF7E8` |
+| `rojo-amarillo/` | amarillo y ámbar | La que pediste: rojo y amarillo. Más cálida y más visible en el feed. |
+| `celeste/` | celeste y turquesa | La paleta original, limpia: mismos colores de siempre, mejor resueltos. |
 
-Sobre fondo rojo el contorno del ícono va en blanco, para que la silueta no se
-pierda contra el fondo. Sobre fondo claro va en rojo profundo.
+En las dos, el trazo sigue siendo negro, el marco blanco y el remate rojo, igual
+que en el logo original.
 
-## Tipografía
+### Paleta rojo y amarillo
 
-**Poppins** — ExtraBold para "VIDRIOS", Bold para "EL BUEN PRECIO", Medium para
-el eslogan. Es gratuita: https://fonts.google.com/specimen/Poppins
+| Uso | HEX |
+|---|---|
+| Trazo | `#16161A` |
+| Marco | `#FFFFFF` |
+| Vidrio de las puertas | `#FFE889` → `#FFC21A` |
+| Vidrio de los laterales | `#FFD04A` → `#EDA200` |
+| Remate y chapa | `#E01B24` |
+| Eslogan | `#D7262C` |
+| Fondo oscuro | `#C4171F` → `#6B0A0E` |
+| Fondo claro | `#FFF7E8` |
 
-## Qué archivo usar en cada lugar
+### Paleta celeste
+
+| Uso | HEX |
+|---|---|
+| Vidrio de las puertas | `#A8ECF5` → `#4FC3DF` |
+| Vidrio de los laterales | `#7BD8EA` → `#2FA3C4` |
+| Reflejo | `#FFE535` |
+| Fondo oscuro | `#123B4E` → `#0A1F2B` |
+| Fondo claro | `#F1FAFC` |
+
+## Qué mejoró del color
+
+1. El vidrio dejó de ser un plano liso: tiene degradado, y los paños laterales
+   son un tono más oscuro que los del frente. Eso es lo que da profundidad.
+2. El reflejo amarillo quedó recortado dentro del vidrio; antes se desbordaba
+   sobre el marco.
+3. El rojo del remate y el de la chapa son ahora el mismo rojo.
+4. El eslogan va en rojo: separa las dos líneas sin agregar otro color.
+5. Sobre fondo oscuro, el nombre va en blanco y el eslogan en amarillo.
+
+## Qué archivo usar
 
 | Dónde | Archivo | Medida |
 |---|---|---|
-| Foto de perfil Instagram / Facebook / TikTok / WhatsApp | `avatar-oscuro.png` | 1080×1080 |
-| Perfil sobre fondo claro | `avatar-claro.png` | 1080×1080 |
-| Perfil muy chico (favicon, WhatsApp, comentarios) | `avatar-solo-icono-oscuro.png` | 1080×1080 |
-| Portada de página de Facebook | `portada-facebook.png` | 1640×624 |
-| Portada YouTube / LinkedIn | `portada-linkedin-youtube.png` | 2048×1152 |
-| Membrete, presupuestos, sitio web | `logo-horizontal.png` | 2400 px de ancho |
-| Sobre fotos o fondos oscuros | `logo-horizontal-blanco.png` | 2400 px |
-| Marca de agua en fotos de trabajos | `logo-monocromo-blanco.png` | 2400 px |
-| Sello, factura, vinilo de un color | `logo-monocromo-rojo.png` | 2400 px |
-| Fotocopia, fax, grabado | `logo-monocromo-negro.png` | 2400 px |
-| Flyer, cartel, camiseta | `logo-vertical.png` | 1600 px |
-| Solo la marca gráfica | `icono.png` / `icono.svg` | 1024×1024 |
+| Foto de perfil (Instagram, Facebook, TikTok) | `avatar-perfil.png` | 1080 × 1080 |
+| Foto de perfil sobre fondo claro | `avatar-perfil-claro.png` | 1080 × 1080 |
+| Foto de perfil chica (WhatsApp, comentarios) | `avatar-solo-ventanal.png` | 1080 × 1080 |
+| Logo completo, fondo claro | `logo-principal.png` | 1800 px |
+| Logo completo, fondo oscuro o foto | `logo-fondo-oscuro.png` | 1800 px |
+| Membrete, presupuesto, sitio web | `logo-horizontal.png` | 2400 px |
+| Sobre fotos oscuras | `logo-horizontal-blanco.png` | 2400 px |
+| Marca de agua en fotos de trabajos | `logo-monocromo-blanco.png` | 1800 px |
+| Sello, vinilo, factura a un color | `logo-monocromo-negro.png` | 1800 px |
+| Portada de página de Facebook | `portada-facebook.png` | 1640 × 624 |
+| Solo el ventanal | `ventanal-solo.png` | 1024 × 1024 |
 
-Los `.svg` de `svg/` son los originales: se escalan sin perder calidad y son los
-que hay que darle a una imprenta o a quien haga un cartel.
+Los `.svg` de cada carpeta son los originales: se escalan sin perder calidad y
+son los que hay que darle a una imprenta o a un cartelero.
 
 ## Reglas simples de uso
 
-1. Dejar alrededor del logo un margen libre igual a la altura de la letra "V".
+1. Dejar alrededor del logo un margen libre igual a la altura de la "V".
 2. No estirar ni deformar: escalar siempre proporcional.
-3. No cambiar los colores ni poner el logo a color sobre fondos saturados; para
-   esos casos están las versiones blanca y monocroma.
-4. En avatares no agregar texto extra: el círculo recorta las esquinas.
-5. Tamaño mínimo del logo horizontal: 25 mm impreso / 160 px en pantalla. Más
-   chico que eso, usar solo el ícono.
+3. Sobre foto o fondo de color, usar la versión de fondo oscuro o la blanca.
+4. En la foto de perfil chica conviene `avatar-solo-ventanal`: el nombre no se
+   llega a leer abajo de 100 px y ya aparece al lado del avatar en cada red.
+5. Tamaño mínimo del logo completo: 30 mm impreso o 200 px en pantalla.
+
+## Tipografía
+
+**Archivo Bold Italic** para el nombre y el eslogan (itálica de palo seco, la más
+parecida a la del logo original). Es gratuita:
+https://fonts.google.com/specimen/Archivo
 
 ## Regenerar los archivos
 
 ```bash
 pip install cairosvg fonttools
-# descargar Poppins-ExtraBold/Bold/SemiBold/Medium .ttf en ../fonts/
-python3 fuente/make.py
+# en ../fonts/: Archivo-BoldItalic.ttf (instanciada de Archivo-Italic[wdth,wght])
+python3 fuente/make3.py
 ```
