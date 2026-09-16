@@ -33,6 +33,16 @@ import urllib.request
 from html.parser import HTMLParser
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+try:
+    import xlsx_minimo
+except ImportError:
+    sys.exit("Falta el archivo xlsx_minimo.py, que debe estar junto a este script.")
+
+# Motor de lectura/escritura de Excel: "auto" usa openpyxl si está instalado y
+# si no cae al módulo propio (xlsx_minimo), que solo necesita Python.
+MOTOR = "auto"
+
 AGENTE = "Mozilla/5.0 (compatible; generador-excel-instituciones-cr/1.0)"
 TIEMPO_ESPERA = 120
 REINTENTOS = 4
@@ -286,16 +296,23 @@ class LectorTablas(HTMLParser):
 # Lectura de hojas de cálculo
 # --------------------------------------------------------------------------
 
-def _cargar_openpyxl():
+def _openpyxl() :
+    """Devuelve el módulo openpyxl si se puede usar, o None."""
+    if MOTOR == "estandar":
+        return None
     try:
-        import openpyxl  # noqa: F401
+        import openpyxl
+        return openpyxl
     except ImportError:
-        sys.exit("Falta openpyxl. Instálalo con:  pip install openpyxl")
-    return __import__("openpyxl")
+        if MOTOR == "openpyxl":
+            sys.exit("Se pidió --motor openpyxl pero no está instalado:  pip install openpyxl")
+        return None
 
 
 def leer_tablas_xlsx(ruta: Path) -> list[list[list[str]]]:
-    openpyxl = _cargar_openpyxl()
+    openpyxl = _openpyxl()
+    if openpyxl is None:
+        return xlsx_minimo.leer(ruta)
     libro = openpyxl.load_workbook(ruta, read_only=True, data_only=True)
     tablas = []
     for hoja in libro.worksheets:
@@ -449,81 +466,112 @@ def ordenar(registros: list[dict]) -> list[dict]:
 # Escritura del Excel
 # --------------------------------------------------------------------------
 
-def escribir_excel(registros: list[dict], bitacora: list[dict], destino: Path) -> None:
-    openpyxl = _cargar_openpyxl()
-    from openpyxl.styles import Alignment, Font, PatternFill
-    from openpyxl.utils import get_column_letter
+def _ancho_columna(columna: str, filas: list[dict]) -> float:
+    largos = [len(columna)] + [len(str(r[columna])) for r in filas[:2000]]
+    return min(max(max(largos) + 2, 10), 48)
 
-    libro = openpyxl.Workbook()
-    relleno = PatternFill("solid", fgColor="1F3864")
-    fuente_encabezado = Font(bold=True, color="FFFFFF")
 
-    def hoja_datos(titulo: str, filas: list[dict]):
-        hoja = libro.create_sheet(titulo[:31])
-        hoja.append(COLUMNAS)
-        for celda in hoja[1]:
-            celda.fill = relleno
-            celda.font = fuente_encabezado
-            celda.alignment = Alignment(vertical="center", wrap_text=True)
-        for registro in filas:
-            hoja.append([registro[columna] for columna in COLUMNAS])
-        for i, columna in enumerate(COLUMNAS, start=1):
-            letra = get_column_letter(i)
-            ancho = max(len(columna), *(len(str(r[columna])) for r in filas[:2000])) if filas else len(columna)
-            hoja.column_dimensions[letra].width = min(max(ancho + 2, 10), 48)
-            if columna in ("Código", "Teléfono"):
-                for celda in hoja[letra][1:]:
-                    celda.number_format = "@"
-        hoja.freeze_panes = "A2"
-        if filas:
-            hoja.auto_filter.ref = f"A1:{get_column_letter(len(COLUMNAS))}{len(filas) + 1}"
-        return hoja
+def construir_hojas(registros: list[dict], bitacora: list[dict]) -> list[dict]:
+    """Describe el libro completo, independiente del motor que lo escriba."""
+    columnas_texto = [COLUMNAS.index("Código"), COLUMNAS.index("Teléfono")]
 
-    hoja_datos("Todas las instituciones", registros)
-    hoja_datos("Públicas", [r for r in registros if r["Sector"] == "Público"])
-    hoja_datos("Privadas", [r for r in registros if r["Sector"].startswith("Privado")])
-    hoja_datos("Educación superior",
-               [r for r in registros if r["Categoría"] in ("Universitaria", "Parauniversitaria")])
+    def hoja_datos(titulo: str, filas: list[dict]) -> dict:
+        return {
+            "titulo": titulo,
+            "encabezado": True,
+            "columnas_texto": columnas_texto,
+            "anchos": [_ancho_columna(c, filas) for c in COLUMNAS],
+            "filas": [list(COLUMNAS)] + [[r[c] for c in COLUMNAS] for r in filas],
+        }
 
-    resumen = libro.create_sheet("Resumen")
-    resumen.append(["Resumen de instituciones educativas de Costa Rica"])
-    resumen["A1"].font = Font(bold=True, size=14)
-    resumen.append([])
-    resumen.append(["Total de instituciones", len(registros)])
+    hojas = [
+        hoja_datos("Todas las instituciones", registros),
+        hoja_datos("Públicas", [r for r in registros if r["Sector"] == "Público"]),
+        hoja_datos("Privadas", [r for r in registros if r["Sector"].startswith("Privado")]),
+        hoja_datos("Educación superior",
+                   [r for r in registros if r["Categoría"] in ("Universitaria", "Parauniversitaria")]),
+    ]
 
-    def bloque(titulo: str, campo: str):
-        resumen.append([])
-        resumen.append([titulo, "Cantidad"])
-        for celda in resumen[resumen.max_row]:
-            celda.fill = relleno
-            celda.font = fuente_encabezado
+    filas_resumen: list[list] = [
+        [(f"Resumen de instituciones educativas de Costa Rica", xlsx_minimo.ESTILO_TITULO)],
+        [],
+        ["Total de instituciones", len(registros)],
+    ]
+
+    def bloque(titulo: str, campo: str) -> None:
+        filas_resumen.append([])
+        filas_resumen.append([(titulo, xlsx_minimo.ESTILO_ENCABEZADO),
+                              ("Cantidad", xlsx_minimo.ESTILO_ENCABEZADO)])
         conteo: dict[str, int] = {}
         for registro in registros:
             clave = registro[campo] or "(sin dato)"
             conteo[clave] = conteo.get(clave, 0) + 1
-        for clave, cantidad in sorted(conteo.items(), key=lambda x: -x[1]):
-            resumen.append([clave, cantidad])
+        for clave, cantidad in sorted(conteo.items(), key=lambda x: (-x[1], x[0])):
+            filas_resumen.append([clave, cantidad])
 
     bloque("Por sector", "Sector")
     bloque("Por categoría educativa", "Categoría")
     bloque("Por provincia", "Provincia")
-    resumen.column_dimensions["A"].width = 46
-    resumen.column_dimensions["B"].width = 14
+    hojas.append({"titulo": "Resumen", "encabezado": False, "anchos": [46, 14], "filas": filas_resumen})
 
-    hoja_fuentes = libro.create_sheet("Fuentes")
-    encabezados = ["Fuente", "URL", "Archivo", "Registros aportados", "Estado", "Fecha"]
-    hoja_fuentes.append(encabezados)
-    for celda in hoja_fuentes[1]:
-        celda.fill = relleno
-        celda.font = fuente_encabezado
+    encabezados_fuentes = ["Fuente", "URL", "Archivo", "Registros aportados", "Estado", "Fecha"]
+    filas_fuentes = [encabezados_fuentes]
     for entrada in bitacora:
-        hoja_fuentes.append([entrada.get("nombre", ""), entrada.get("url", ""), entrada.get("archivo", ""),
-                             entrada.get("registros", 0), entrada.get("estado", ""), entrada.get("fecha", "")])
-    for i, encabezado in enumerate(encabezados, start=1):
-        hoja_fuentes.column_dimensions[get_column_letter(i)].width = max(len(encabezado) + 2, 22)
-    hoja_fuentes.freeze_panes = "A2"
+        filas_fuentes.append([entrada.get("nombre", ""), entrada.get("url", ""), entrada.get("archivo", ""),
+                              entrada.get("registros", 0), entrada.get("estado", ""), entrada.get("fecha", "")])
+    hojas.append({"titulo": "Fuentes", "encabezado": True, "filas": filas_fuentes,
+                  "anchos": [44, 48, 28, 20, 34, 14]})
+    return hojas
 
+
+def escribir_excel(registros: list[dict], bitacora: list[dict], destino: Path) -> None:
+    hojas = construir_hojas(registros, bitacora)
+    openpyxl = _openpyxl()
+    if openpyxl is None:
+        xlsx_minimo.escribir(hojas, destino)
+    else:
+        _escribir_con_openpyxl(hojas, destino, openpyxl)
+
+
+def _escribir_con_openpyxl(hojas: list[dict], destino: Path, openpyxl) -> None:
+    from openpyxl.styles import Alignment, Font, PatternFill
+    from openpyxl.utils import get_column_letter
+
+    libro = openpyxl.Workbook()
     del libro["Sheet"]
+    relleno = PatternFill("solid", fgColor="1F3864")
+    fuente_encabezado = Font(bold=True, color="FFFFFF")
+    fuente_titulo = Font(bold=True, size=14)
+
+    for descripcion in hojas:
+        hoja = libro.create_sheet(xlsx_minimo._titulo_valido(descripcion["titulo"]))
+        for numero, fila in enumerate(descripcion["filas"], start=1):
+            for columna, celda in enumerate(fila, start=1):
+                estilo = None
+                if isinstance(celda, tuple):
+                    celda, estilo = celda
+                destino_celda = hoja.cell(row=numero, column=columna, value=celda)
+                if estilo == xlsx_minimo.ESTILO_TITULO:
+                    destino_celda.font = fuente_titulo
+                elif estilo == xlsx_minimo.ESTILO_ENCABEZADO:
+                    destino_celda.fill = relleno
+                    destino_celda.font = fuente_encabezado
+        if descripcion.get("encabezado") and descripcion["filas"]:
+            for celda in hoja[1]:
+                celda.fill = relleno
+                celda.font = fuente_encabezado
+                celda.alignment = Alignment(vertical="center", wrap_text=True)
+            hoja.freeze_panes = "A2"
+            if len(descripcion["filas"]) > 1:
+                ultima = get_column_letter(len(descripcion["filas"][0]))
+                hoja.auto_filter.ref = f"A1:{ultima}{len(descripcion['filas'])}"
+        for i, ancho in enumerate(descripcion.get("anchos") or [], start=1):
+            hoja.column_dimensions[get_column_letter(i)].width = ancho
+        for indice in descripcion.get("columnas_texto", ()):
+            letra = get_column_letter(indice + 1)
+            for celda in hoja[letra][1:]:
+                celda.number_format = "@"
+
     destino.parent.mkdir(parents=True, exist_ok=True)
     libro.save(destino)
 
@@ -674,31 +722,77 @@ def informe(registros: list[dict], duplicados: int, descartados: int) -> None:
 # Autoprueba (sin internet)
 # --------------------------------------------------------------------------
 
+def _guardar_xlsx_prueba(ruta: Path, filas: list[list[str]]) -> None:
+    """Crea una hoja de cálculo de prueba con el motor que esté disponible."""
+    openpyxl = _openpyxl()
+    if openpyxl is None:
+        xlsx_minimo.escribir([{"titulo": "Hoja1", "encabezado": False, "filas": filas}], ruta)
+        return
+    libro = openpyxl.Workbook()
+    for fila in filas:
+        libro.active.append(fila)
+    libro.save(ruta)
+
+
 def autoprueba() -> int:
     """Genera datos ficticios, corre todo el flujo y verifica el resultado."""
-    openpyxl = _cargar_openpyxl()
+    import tempfile
+
+    motores = ["estandar"]
+    if _puede_usar_openpyxl():
+        motores.insert(0, "openpyxl")
+    else:
+        print("aviso: openpyxl no está instalado; se prueba solo el motor estándar")
+
+    fallos_totales = []
+    for motor in motores:
+        print(f"-- motor {motor}")
+        fallos_totales += _autoprueba_con_motor(motor)
+
+    if fallos_totales:
+        print("AUTOPRUEBA FALLIDA:")
+        for fallo in fallos_totales:
+            print("  -", fallo)
+        return 1
+    print("Autoprueba correcta con " + " y ".join(motores) +
+          ": lectura de .xlsx, .csv y HTML, clasificación, unificación de duplicados, "
+          "filtro por nivel y escritura del Excel.")
+    return 0
+
+
+def _puede_usar_openpyxl() -> bool:
+    try:
+        import openpyxl  # noqa: F401
+        return True
+    except ImportError:
+        return False
+
+
+def _autoprueba_con_motor(motor: str) -> list[str]:
+    global MOTOR
+    MOTOR = motor
     import tempfile
 
     fecha = dt.date.today().isoformat()
     with tempfile.TemporaryDirectory() as temporal:
         carpeta = Path(temporal)
 
-        libro = openpyxl.Workbook()
-        hoja = libro.active
-        hoja.append(["NÓMINA DE CENTROS EDUCATIVOS (archivo de prueba)"])
-        hoja.append([])
-        hoja.append(["Código presupuestario", "Nombre del centro educativo", "Dirección Regional",
-                     "Circuito", "Provincia", "Cantón", "Distrito", "Nivel", "Dependencia",
-                     "Zona", "Teléfono", "Correo"])
-        hoja.append(["0001", "ESCUELA DE PRUEBA UNO", "SAN JOSÉ CENTRAL", "01", "San José", "Central",
-                     "Carmen", "I y II Ciclo", "Pública", "Urbana", "2222-0001", "uno@prueba.cr"])
-        hoja.append(["0002", "LICEO DE PRUEBA DOS", "CARTAGO", "03", "Cartago", "Cartago", "Oriental",
-                     "III Ciclo y Educación Diversificada", "Privado", "Urbana", "2222-0002", ""])
-        hoja.append(["0003", "JARDÍN DE NIÑOS DE PRUEBA", "HEREDIA", "02", "Heredia", "Heredia", "Mercedes",
-                     "Preescolar", "Pública", "Urbana", "", ""])
-        hoja.append(["Total", "", "", "", "", "", "", "", "", "", "", ""])
+        filas_nomina = [
+            ["NÓMINA DE CENTROS EDUCATIVOS (archivo de prueba)"],
+            [],
+            ["Código presupuestario", "Nombre del centro educativo", "Dirección Regional",
+             "Circuito", "Provincia", "Cantón", "Distrito", "Nivel", "Dependencia",
+             "Zona", "Teléfono", "Correo"],
+            ["0001", "ESCUELA DE PRUEBA UNO", "SAN JOSÉ CENTRAL", "01", "San José", "Central",
+             "Carmen", "I y II Ciclo", "Pública", "Urbana", "2222-0001", "uno@prueba.cr"],
+            ["0002", "LICEO DE PRUEBA DOS", "CARTAGO", "03", "Cartago", "Cartago", "Oriental",
+             "III Ciclo y Educación Diversificada", "Privado", "Urbana", "2222-0002", ""],
+            ["0003", "JARDÍN DE NIÑOS DE PRUEBA", "HEREDIA", "02", "Heredia", "Heredia", "Mercedes",
+             "Preescolar", "Pública", "Urbana", "", ""],
+            ["Total", "", "", "", "", "", "", "", "", "", "", ""],
+        ]
         archivo_xlsx = carpeta / "nomina-prueba.xlsx"
-        libro.save(archivo_xlsx)
+        _guardar_xlsx_prueba(archivo_xlsx, filas_nomina)
 
         archivo_csv = carpeta / "privados-prueba.csv"
         archivo_csv.write_text(
@@ -756,26 +850,27 @@ def autoprueba() -> int:
 
         destino = carpeta / "prueba.xlsx"
         escribir_excel(ordenar(filtrados), bitacora, destino)
-        if not destino.exists() or destino.stat().st_size < 4000:
+        if not destino.exists() or destino.stat().st_size < 2000:
             fallos.append("el Excel no se generó correctamente")
         else:
-            comprobacion = openpyxl.load_workbook(destino)
-            if [h for h in comprobacion.sheetnames] != ["Todas las instituciones", "Públicas", "Privadas",
-                                                        "Educación superior", "Resumen", "Fuentes"]:
-                fallos.append(f"hojas inesperadas: {comprobacion.sheetnames}")
-            hoja_todas = comprobacion["Todas las instituciones"]
-            if hoja_todas.max_row != len(filtrados) + 1:
-                fallos.append(f"filas escritas: {hoja_todas.max_row - 1}, esperadas {len(filtrados)}")
-            comprobacion.close()
+            # Se relee con el módulo propio, que no depende del motor de escritura.
+            hojas = xlsx_minimo.leer_con_nombres(destino)
+            nombres_hojas = [n for n, _ in hojas]
+            esperadas_hojas = ["Todas las instituciones", "Públicas", "Privadas",
+                               "Educación superior", "Resumen", "Fuentes"]
+            if nombres_hojas != esperadas_hojas:
+                fallos.append(f"hojas inesperadas: {nombres_hojas}")
+            else:
+                filas_todas = dict(hojas)["Todas las instituciones"]
+                if len(filas_todas) != len(filtrados) + 1:
+                    fallos.append(f"filas escritas: {len(filas_todas) - 1}, esperadas {len(filtrados)}")
+                if filas_todas[0] != COLUMNAS:
+                    fallos.append("los encabezados del Excel no coinciden con el esquema")
+                columna_codigo = filas_todas[0].index("Código")
+                if not any(f[columna_codigo] == "0004" for f in filas_todas[1:]):
+                    fallos.append("se perdió el código 0004 al escribir el Excel")
 
-    if fallos:
-        print("AUTOPRUEBA FALLIDA:")
-        for fallo in fallos:
-            print("  -", fallo)
-        return 1
-    print("Autoprueba correcta: lectura de .xlsx, .csv y HTML, clasificación, "
-          "unificación de duplicados, filtro por nivel y escritura del Excel.")
-    return 0
+    return [f"[{motor}] {f}" for f in fallos]
 
 
 # --------------------------------------------------------------------------
@@ -796,7 +891,12 @@ def main(argv: list[str] | None = None) -> int:
     analizador.add_argument("--csv", action="store_true", help="genera también un .csv con los mismos datos")
     analizador.add_argument("--autoprueba", action="store_true",
                             help="verifica el procesamiento con datos ficticios, sin internet")
+    analizador.add_argument("--motor", choices=("auto", "openpyxl", "estandar"), default="auto",
+                            help="motor de Excel: auto (por omisión), openpyxl, o estandar (sin dependencias)")
     args = analizador.parse_args(argv)
+
+    global MOTOR
+    MOTOR = args.motor
 
     if args.autoprueba:
         return autoprueba()
