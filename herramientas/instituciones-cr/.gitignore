@@ -2,3 +2,5 @@
 descargas/
 *.xlsx
 *.csv
+__pycache__/
+*.pyc
