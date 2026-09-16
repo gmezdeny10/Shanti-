@@ -8,13 +8,11 @@ universitaria. Preescolar queda fuera por omisión y se agrega con `--niveles to
 
 ## Requisitos
 
-- Python 3.9 o superior
+- Python 3.9 o superior. **Nada más**: el Excel se escribe con la biblioteca
+  estándar (`xlsx_minimo.py`). Si tenés `openpyxl` instalado se aprovecha, pero
+  es opcional; `--motor estandar` fuerza el modo sin dependencias.
 - Una computadora **con acceso a internet** (los sitios del MEP no son
-  alcanzables desde el entorno donde se escribió esta herramienta)
-
-```bash
-pip install openpyxl
-```
+  alcanzables desde el entorno donde se escribió esta herramienta).
 
 ## Uso
 
@@ -96,7 +94,16 @@ completa los campos que a una fuente le faltan con los de otra.
 `python3 generar_excel.py --autoprueba` arma datos ficticios y comprueba, sin
 internet, que el script lee `.xlsx`, `.csv` y tablas HTML, clasifica nivel y
 sector, descarta filas de totales, unifica duplicados, aplica el filtro de
-niveles y escribe el Excel con sus seis hojas.
+niveles y escribe el Excel con sus seis hojas. Corre con los dos motores
+(openpyxl y el estándar) y relee el archivo generado para confirmar que las
+hojas, los encabezados y los códigos quedaron completos.
+
+## Archivos
+
+| Archivo | Para qué |
+| --- | --- |
+| `generar_excel.py` | La herramienta: descarga, normaliza, consolida y escribe el Excel |
+| `xlsx_minimo.py` | Lectura y escritura de `.xlsx` con solo la biblioteca estándar |
 
 ## Limitaciones
 

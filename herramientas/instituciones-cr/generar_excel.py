@@ -7,13 +7,16 @@ oficiales: MEP (nómina de centros educativos), CONESUP (universidades
 privadas), CONARE (universidades estatales) y Consejo Superior de Educación
 (instituciones parauniversitarias).
 
+No hay que instalar nada: si openpyxl está disponible lo usa, y si no recurre a
+xlsx_minimo.py (al lado de este archivo), que solo usa la biblioteca estándar.
+
 Uso:
 
-    pip install openpyxl
     python3 generar_excel.py                    # descarga las fuentes y genera el Excel
     python3 generar_excel.py --niveles todos    # incluye también preescolar
     python3 generar_excel.py --entrada a.xlsx b.csv   # usa archivos ya descargados
     python3 generar_excel.py --autoprueba       # verifica el procesamiento sin internet
+    python3 generar_excel.py --motor estandar   # fuerza el modo sin dependencias
 
 El detalle de las fuentes y el modo manual están en README.md.
 """
