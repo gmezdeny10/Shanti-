@@ -146,6 +146,6 @@ $lugares   = $evento && $evento['capacity'] ? max(0, (int) $evento['capacity'] -
 
 <?php include __DIR__ . '/partials/footer.php'; ?>
 
-<script src="script.js?v=6"></script>
+<script src="script.js?v=7"></script>
 </body>
 </html>

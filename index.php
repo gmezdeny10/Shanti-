@@ -375,26 +375,10 @@ $enviado  = $_GET['mensaje'] ?? '';
         <p class="eyebrow">Servicio y comunidad</p>
         <h2>Voluntariado: Programa de Residencia.</h2>
         <p class="lead">Una inmersión espiritual estructurada —no una estancia casual—: yoga, meditación, estudio de textos sagrados y <em>karma yoga</em> (servicio) en comunidad.</p>
-        <p>Está abierto solo a quienes buscan sinceramente crecer espiritualmente, con apertura a la disciplina y el autodesarrollo, dispuestos a vivir en comunidad y a comprometerse por completo. <strong>La participación diaria en la sadhana de la mañana es obligatoria</strong> durante toda la estancia.</p>
-
-        <h3>Karma Yoga (servicio)</h3>
-        <p>Parte esencial de la residencia: un mínimo de 5 horas al día, 5 días a la semana, en tareas como construcción de altares, desarrollo del jardín, construcción, pintura de murales y apoyo en cocina.</p>
-
-        <h3>Reglas del ashram</h3>
-        <ul class="volunteer-list">
-          <li>Sin drogas, sin alcohol, sin violencia física ni verbal</li>
-          <li>Respeto por maestros, staff y demás residentes</li>
-          <li>Puntualidad obligatoria y cuidado de los espacios</li>
-          <li>Buena salud física y mental, y responsabilidad por el propio bienestar</li>
-          <li>Apertura a una comunidad internacional: se espera respeto por otras culturas, religiones y creencias</li>
-        </ul>
-        <p class="volunteer-note">Quien no siga estas reglas puede ser retirado del programa. Si sales antes de lo planeado, no se dan reembolsos.</p>
-
-        <blockquote class="volunteer-quote">“La mejor manera de encontrarte a ti mismo es perderte en el servicio a los demás.”<cite>— Mahatma Gandhi</cite></blockquote>
+        <p>Abierto solo a quienes buscan comprometerse por completo con la práctica y la vida en comunidad, con un mínimo de 5 horas diarias de servicio.</p>
 
         <div class="volunteer-actions">
-          <a href="https://forms.gle/HjYH1dJ4ryrWSy788" target="_blank" rel="noopener" class="btn btn-gold">Postularme →</a>
-          <a href="#contacto" class="link-arrow">¿Tienes dudas? Escríbenos</a>
+          <button type="button" class="link-arrow as-button" id="abrirVoluntariado">Conocer el programa completo →</button>
         </div>
       </div>
     </div>
@@ -522,8 +506,47 @@ $enviado  = $_GET['mensaje'] ?? '';
   </div>
 </div>
 
+<div class="essence-backdrop" id="voluntariadoBackdrop" aria-hidden="true">
+  <div class="essence-modal" role="dialog" aria-modal="true" aria-labelledby="voluntariadoTitulo">
+    <button type="button" class="essence-close" id="cerrarVoluntariado" aria-label="Cerrar">✕</button>
+
+    <div class="essence-content">
+      <p class="eyebrow">Servicio y comunidad</p>
+      <h2 id="voluntariadoTitulo">Voluntariado: Programa de Residencia</h2>
+
+      <section class="essence-block">
+        <p>Es una inmersión espiritual estructurada —no una estancia casual—, basada en yoga, meditación, estudio de textos sagrados y <em>karma yoga</em> (servicio). Está abierta solo a quienes buscan sinceramente crecer espiritualmente, con apertura a la disciplina y el autodesarrollo, dispuestos a vivir en comunidad y a comprometerse por completo. <strong>La participación diaria en la sadhana de la mañana es obligatoria</strong> durante toda la estancia.</p>
+      </section>
+
+      <section class="essence-block">
+        <h3>Karma Yoga (servicio)</h3>
+        <p>Parte esencial de la residencia: un mínimo de 5 horas al día, 5 días a la semana, en tareas como construcción de altares, desarrollo del jardín, construcción, pintura de murales y apoyo en cocina.</p>
+      </section>
+
+      <section class="essence-block">
+        <h3>Reglas del ashram</h3>
+        <ul class="volunteer-list">
+          <li>Sin drogas, sin alcohol, sin violencia física ni verbal</li>
+          <li>Respeto por maestros, staff y demás residentes</li>
+          <li>Puntualidad obligatoria y cuidado de los espacios</li>
+          <li>Buena salud física y mental, y responsabilidad por el propio bienestar</li>
+          <li>Apertura a una comunidad internacional: se espera respeto por otras culturas, religiones y creencias</li>
+        </ul>
+        <p class="volunteer-note">Quien no siga estas reglas puede ser retirado del programa. Si sales antes de lo planeado, no se dan reembolsos.</p>
+      </section>
+
+      <blockquote class="volunteer-quote">“La mejor manera de encontrarte a ti mismo es perderte en el servicio a los demás.”<cite>— Mahatma Gandhi</cite></blockquote>
+
+      <div class="essence-actions">
+        <a href="https://forms.gle/HjYH1dJ4ryrWSy788" target="_blank" rel="noopener" class="btn btn-gold">Postularme →</a>
+        <a href="#contacto" class="btn btn-outline">¿Tienes dudas? Escríbenos</a>
+      </div>
+    </div>
+  </div>
+</div>
+
 <?php include __DIR__ . "/partials/footer.php"; ?>
 
-<script src="script.js?v=6"></script>
+<script src="script.js?v=7"></script>
 </body>
 </html>

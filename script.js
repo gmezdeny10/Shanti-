@@ -95,6 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initEssenceModal('esenciaBackdrop', '#abrirEsencia', 'cerrarEsencia');
   initEssenceModal('shivaBackdrop', '#abrirEsencia2', 'cerrarShiva');
+  initEssenceModal('voluntariadoBackdrop', '#abrirVoluntariado', 'cerrarVoluntariado');
 
   /* ---------- Mobile side panel ---------- */
   const hamburger = document.getElementById('hamburger');
