@@ -16,7 +16,7 @@ $enviado  = $_GET['mensaje'] ?? '';
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Karla:wght@300;400;500;600&family=Caveat:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=10">
+<link rel="stylesheet" href="style.css?v=11">
 </head>
 <body>
 
@@ -28,7 +28,7 @@ $enviado  = $_GET['mensaje'] ?? '';
   <!-- HERO -->
   <section class="hero">
     <div class="hero-bg" id="heroBg">
-      <img src="images/hero-meditacion.jpg" alt="Meditación en el Shanti Lanka Ashram" style="object-position: center 38%;">
+      <img src="images/hero-comunidad.jpg" alt="Comunidad del Shanti Lanka Ashram en ceremonia" style="object-position: center 30%;">
       <div class="hero-overlay"></div>
     </div>
     <div class="hero-particles" id="heroParticles" aria-hidden="true"></div>

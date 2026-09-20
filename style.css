@@ -435,7 +435,7 @@ p{ margin: 0 0 1em; max-width: 65ch; }
   overflow:hidden;
 }
 .hero-bg{ position:absolute; inset:0; }
-.hero-bg img{ width:100%; height:100%; object-fit:cover; }
+.hero-bg img{ width:100%; height:100%; object-fit:cover; object-position:center; }
 .hero-overlay{
   position:absolute; inset:0;
   background: linear-gradient(180deg,
@@ -547,6 +547,7 @@ p{ margin: 0 0 1em; max-width: 65ch; }
 .facility-tile img{
   width:100%; height:100%;
   object-fit:cover;
+  object-position:center;
   transition: transform .6s ease;
 }
 .facility-tile:hover img{ transform: scale(1.05); }
@@ -629,7 +630,7 @@ p{ margin: 0 0 1em; max-width: 65ch; }
   background: linear-gradient(160deg, rgba(11,66,60,.32), rgba(227,95,44,.16));
   mix-blend-mode: multiply;
 }
-.card-img img{ width:100%; height:100%; object-fit:cover; transition: transform .6s cubic-bezier(.16,1,.3,1); }
+.card-img img{ width:100%; height:100%; object-fit:cover; object-position:center; transition: transform .6s cubic-bezier(.16,1,.3,1); }
 .card:hover .card-img img{ transform: scale(1.05); }
 .card-body{ padding: 26px; }
 .card-body h3{ margin-bottom:.2em; }
@@ -648,7 +649,7 @@ p{ margin: 0 0 1em; max-width: 65ch; }
   overflow:hidden;
 }
 .values-bg{ position:absolute; inset:0; opacity:.35; }
-.values-bg img{ width:100%; height:100%; object-fit:cover; }
+.values-bg img{ width:100%; height:100%; object-fit:cover; object-position:center; }
 .values-overlay{
   position:absolute; inset:0;
   background: linear-gradient(180deg, rgba(11,66,60,.5), rgba(11,66,60,.94));
@@ -723,7 +724,7 @@ p{ margin: 0 0 1em; max-width: 65ch; }
   overflow:hidden;
   aspect-ratio: 7/5;
 }
-.tile img{ width:100%; height:100%; object-fit:cover; transition: transform .5s ease; }
+.tile img{ width:100%; height:100%; object-fit:cover; object-position:center; transition: transform .5s ease; }
 .tile:hover img{ transform: scale(1.06); }
 .tile::after{
   content:"";
@@ -767,7 +768,7 @@ p{ margin: 0 0 1em; max-width: 65ch; }
   background: linear-gradient(160deg, rgba(227,95,44,.18), rgba(11,66,60,.3));
   mix-blend-mode: multiply;
 }
-.event-img img{ width:100%; height:100%; object-fit:cover; transition: transform .6s cubic-bezier(.16,1,.3,1); }
+.event-img img{ width:100%; height:100%; object-fit:cover; object-position:center; transition: transform .6s cubic-bezier(.16,1,.3,1); }
 .event-card:hover .event-img img{ transform: scale(1.05); }
 .event-card .eyebrow, .event-card h3, .event-card .location, .event-card .meta, .event-card .link-arrow{
   padding: 0 22px;
@@ -805,7 +806,7 @@ p{ margin: 0 0 1em; max-width: 65ch; }
   background: linear-gradient(160deg, rgba(227,95,44,.2), rgba(11,66,60,.28));
   mix-blend-mode: multiply;
 }
-.wisdom-img img{ aspect-ratio: 9/7; object-fit:cover; }
+.wisdom-img img{ aspect-ratio: 9/7; object-fit:cover; object-position:center; }
 .wisdom-list li{
   position:relative;
   padding-left: 22px;
@@ -1202,7 +1203,7 @@ p{ margin: 0 0 1em; max-width: 65ch; }
   border: 3px solid var(--gold);
   max-height: 420px;
 }
-.event-hero img{ width:100%; height:100%; object-fit:cover; }
+.event-hero img{ width:100%; height:100%; object-fit:cover; object-position:center; }
 
 /* ---- carrusel de fotos del evento ---- */
 .event-carousel{
@@ -1215,7 +1216,7 @@ p{ margin: 0 0 1em; max-width: 65ch; }
 }
 .event-carousel-track{ aspect-ratio: 4/5; max-height: 620px; }
 .event-carousel-slide{ width:100%; height:100%; }
-.event-carousel-slide img{ width:100%; height:100%; object-fit:cover; display:block; }
+.event-carousel-slide img{ width:100%; height:100%; object-fit:cover; object-position:center; display:block; }
 .carousel-arrow{
   position:absolute; top:50%; transform: translateY(-50%);
   width:42px; height:42px; border-radius:50%;
