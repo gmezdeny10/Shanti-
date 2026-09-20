@@ -333,14 +333,7 @@ $enviado  = $_GET['mensaje'] ?? '';
         <p class="eyebrow">Linaje e inspiración</p>
         <h2>Shri Shivabalayogi Maharaj</h2>
         <p class="lead">Uno de los grandes yoguis que inspiran el camino del Shanti Lanka Ashram.</p>
-        <ul class="wisdom-list">
-          <li>Nació el 24 de enero de 1935 en Adivarapupeta, un pueblo de tejedores en Andhra Pradesh, India, con el nombre de Sathyaraju Allaka.</li>
-          <li>Perdió a su padre de niño; lo crió su madre junto a su abuelo, y desde muy chico trabajó tejiendo para ayudar en casa.</li>
-          <li>A los catorce años entró en <em>tapas</em>: doce años de meditación ininterrumpida —veintitrés horas diarias los primeros ocho años, doce horas los últimos cuatro— resistiendo calor, lluvias y hasta mordidas de serpiente sin moverse de su lugar.</li>
-          <li>Completó su tapas el 7 de agosto de 1961, a los 26 años, ante decenas de miles de personas que llegaron a recibirlo como maestro autorrealizado.</li>
-          <li>Su gurú le había dado una sola tarea: no dar discursos, solo iniciar en meditación a quien la buscara. Así viajó tres décadas por India, Sri Lanka, Inglaterra y Estados Unidos, iniciando gratuitamente a cientos de miles de personas, sin pedir a nadie cambiar de fe.</li>
-          <li>Murió en 1994. Su ashram y su samadhi siguen en Adivarapupeta, India — y su ejemplo sostiene aquí una idea sencilla: muchos caminos, una sola intención.</li>
-        </ul>
+        <p>Nació en 1935 en un pueblo de tejedores en India y, a los catorce años, entró en <em>tapas</em>: doce años de meditación ininterrumpida. Desde entonces dedicó su vida a iniciar, de forma gratuita, a cientos de miles de personas en la meditación — sin pedirle a nadie cambiar de fe.</p>
         <button type="button" class="link-arrow as-button" id="abrirEsencia2">Conocer su historia →</button>
       </div>
     </div>
