@@ -17,6 +17,7 @@
         </button>
         <div class="nav-more-panel" id="navMorePanel">
           <a href="<?= $sla_home ?>#sabiduria">Shivabalayogi</a>
+          <a href="<?= $sla_home ?>#voluntariado">Voluntariado</a>
           <a href="<?= $sla_home ?>#proyectos">Proyectos</a>
           <a href="<?= $sla_home ?>#participar">Participar</a>
         </div>
@@ -52,6 +53,7 @@
     <a href="<?= $sla_home ?>#practicas">Prácticas</a>
     <a href="<?= $sla_home ?>#eventos">Eventos</a>
     <a href="<?= $sla_home ?>#sabiduria">Shivabalayogi</a>
+    <a href="<?= $sla_home ?>#voluntariado">Voluntariado</a>
     <a href="<?= $sla_home ?>#proyectos">Proyectos</a>
     <a href="<?= $sla_home ?>#participar">Participar</a>
   </nav>

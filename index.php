@@ -16,7 +16,7 @@ $enviado  = $_GET['mensaje'] ?? '';
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Karla:wght@300;400;500;600&family=Caveat:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=16">
+<link rel="stylesheet" href="style.css?v=17">
 </head>
 <body>
 
@@ -372,6 +372,41 @@ $enviado  = $_GET['mensaje'] ?? '';
     </div>
   </section>
 
+  <!-- VOLUNTARIADO -->
+  <section class="volunteer" id="voluntariado">
+    <div class="container split">
+      <div class="volunteer-img">
+        <img src="images/instalaciones-yoga-1.jpg" alt="Karma yoga y servicio en el Shanti Lanka Ashram">
+      </div>
+      <div class="volunteer-copy">
+        <p class="eyebrow">Servicio y comunidad</p>
+        <h2>Voluntariado: Programa de Residencia.</h2>
+        <p class="lead">Una inmersión espiritual estructurada —no una estancia casual—: yoga, meditación, estudio de textos sagrados y <em>karma yoga</em> (servicio) en comunidad.</p>
+        <p>Está abierto solo a quienes buscan sinceramente crecer espiritualmente, con apertura a la disciplina y el autodesarrollo, dispuestos a vivir en comunidad y a comprometerse por completo. <strong>La participación diaria en la sadhana de la mañana es obligatoria</strong> durante toda la estancia.</p>
+
+        <h3>Karma Yoga (servicio)</h3>
+        <p>Parte esencial de la residencia: un mínimo de 5 horas al día, 5 días a la semana, en tareas como construcción de altares, desarrollo del jardín, construcción, pintura de murales y apoyo en cocina.</p>
+
+        <h3>Reglas del ashram</h3>
+        <ul class="volunteer-list">
+          <li>Sin drogas, sin alcohol, sin violencia física ni verbal</li>
+          <li>Respeto por maestros, staff y demás residentes</li>
+          <li>Puntualidad obligatoria y cuidado de los espacios</li>
+          <li>Buena salud física y mental, y responsabilidad por el propio bienestar</li>
+          <li>Apertura a una comunidad internacional: se espera respeto por otras culturas, religiones y creencias</li>
+        </ul>
+        <p class="volunteer-note">Quien no siga estas reglas puede ser retirado del programa. Si sales antes de lo planeado, no se dan reembolsos.</p>
+
+        <blockquote class="volunteer-quote">“La mejor manera de encontrarte a ti mismo es perderte en el servicio a los demás.”<cite>— Mahatma Gandhi</cite></blockquote>
+
+        <div class="volunteer-actions">
+          <a href="https://forms.gle/HjYH1dJ4ryrWSy788" target="_blank" rel="noopener" class="btn btn-gold">Postularme →</a>
+          <a href="#contacto" class="link-arrow">¿Tienes dudas? Escríbenos</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- CONTACTO -->
   <section class="contact-section" id="contacto">
     <div class="container narrow">
@@ -414,7 +449,7 @@ $enviado  = $_GET['mensaje'] ?? '';
       <h2 class="light">No importa desde qué lugar comienza tu camino.<br>Hay una comunidad dispuesta a caminar contigo.</h2>
       <div class="hero-actions center">
         <a href="#eventos" class="btn btn-gold">Encontrar mi camino</a>
-        <a href="#contacto" class="btn btn-ghost-light">Compartir mi servicio</a>
+        <a href="#voluntariado" class="btn btn-ghost-light">Compartir mi servicio</a>
       </div>
     </div>
   </section>

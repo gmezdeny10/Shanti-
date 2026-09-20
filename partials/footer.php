@@ -20,6 +20,7 @@
       <p class="eyebrow eyebrow-light">Organización</p>
       <a href="<?= $sla_home ?>#esencia">Nuestra esencia</a>
       <a href="<?= $sla_home ?>#sabiduria">Shivabalayogi</a>
+      <a href="<?= $sla_home ?>#voluntariado">Voluntariado</a>
       <a href="<?= $sla_home ?>#participar">Participar y donar</a>
       <a href="<?= $sla_home ?>#contacto">Transparencia</a>
     </div>
