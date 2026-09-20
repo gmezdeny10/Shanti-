@@ -376,18 +376,19 @@ $enviado  = $_GET['mensaje'] ?? '';
   <section class="wisdom" id="sabiduria">
     <div class="container split">
       <div class="wisdom-img">
-        <img src="images/altar-sabiduria.jpg" alt="Altar interreligioso del Shanti Lanka Ashram">
+        <img src="images/shivabalayogi-maharaj.jpg" alt="Shri Shivabalayogi Maharaj">
       </div>
       <div class="wisdom-copy">
         <p class="eyebrow">Linaje e inspiración</p>
         <h2>Shri Shivabalayogi Maharaj</h2>
         <p class="lead">Uno de los grandes yoguis que inspiran el camino del Shanti Lanka Ashram.</p>
         <ul class="wisdom-list">
-          <li>Nació en 1935 en Adivarapupeta, un pequeño pueblo de tejedores en Andhra Pradesh, India, con el nombre de Sathyaraju.</li>
-          <li>A los catorce años entró en <em>tapas</em>: doce años de meditación profunda, sentado hasta veintitrés horas al día.</li>
-          <li>Al terminar, dedicó el resto de su vida a dar iniciación en meditación de forma gratuita a cientos de miles de personas.</li>
-          <li>Enseñó que la meditación no pertenece a ninguna religión: no pedía a nadie cambiar de fe, solo sentarse y practicar.</li>
-          <li>Su ejemplo sostiene aquí una idea sencilla: muchos caminos, una sola intención.</li>
+          <li>Nació el 24 de enero de 1935 en Adivarapupeta, un pueblo de tejedores en Andhra Pradesh, India, con el nombre de Sathyaraju Allaka.</li>
+          <li>Perdió a su padre de niño; lo crió su madre junto a su abuelo, y desde muy chico trabajó tejiendo para ayudar en casa.</li>
+          <li>A los catorce años entró en <em>tapas</em>: doce años de meditación ininterrumpida —veintitrés horas diarias los primeros ocho años, doce horas los últimos cuatro— resistiendo calor, lluvias y hasta mordidas de serpiente sin moverse de su lugar.</li>
+          <li>Completó su tapas el 7 de agosto de 1961, a los 26 años, ante decenas de miles de personas que llegaron a recibirlo como maestro autorrealizado.</li>
+          <li>Su gurú le había dado una sola tarea: no dar discursos, solo iniciar en meditación a quien la buscara. Así viajó tres décadas por India, Sri Lanka, Inglaterra y Estados Unidos, iniciando gratuitamente a cientos de miles de personas, sin pedir a nadie cambiar de fe.</li>
+          <li>Murió en 1994. Su ashram y su samadhi siguen en Adivarapupeta, India — y su ejemplo sostiene aquí una idea sencilla: muchos caminos, una sola intención.</li>
         </ul>
         <button type="button" class="link-arrow as-button" id="abrirEsencia2">Conocer su historia →</button>
       </div>
@@ -498,10 +499,10 @@ $enviado  = $_GET['mensaje'] ?? '';
 
       <section class="essence-block">
         <h3>Shri Shivabalayogi Maharaj</h3>
-        <p>Shivabalayogi Maharaj (1935–1994) nació como Sathyaraju Aliminati en Adivarapupeta, un pueblo de familias tejedoras en Andhra Pradesh, India. Perdió a su padre siendo niño y creció trabajando desde muy joven para ayudar en casa.</p>
-        <p>En 1949, con catorce años, comenzó lo que en la tradición se llama <em>tapas</em>: doce años de meditación ininterrumpida, sentado en <em>samadhi</em> hasta veintitrés horas al día, sin moverse de su sitio. Terminó esa disciplina en 1961.</p>
-        <p>El resto de su vida lo dedicó a una sola cosa: dar iniciación en meditación, siempre de forma gratuita, a cientos de miles de personas en India y en otros países. Nunca pidió a nadie cambiar de religión ni adoptar una creencia. Su indicación era simple: siéntate, cierra los ojos y medita.</p>
-        <p>Esa manera de entender la práctica —abierta a cualquiera, sin barreras de fe ni de origen— es una de las raíces del Shanti Lanka Ashram y de la idea que nos sostiene: muchos caminos, una sola intención.</p>
+        <p>Shivabalayogi Maharaj (24 de enero de 1935 – 28 de marzo de 1994) nació como Sathyaraju Allaka en Adivarapupeta, un pueblo de familias tejedoras en Andhra Pradesh, India. Perdió a su padre siendo niño; lo crió su madre junto a su abuelo, y desde muy joven trabajó tejiendo para ayudar en casa.</p>
+        <p>En 1949, con catorce años, comenzó lo que en la tradición se llama <em>tapas</em>: doce años de meditación ininterrumpida —veintitrés horas al día durante los primeros ocho años, doce horas al día los últimos cuatro— sin moverse de su sitio, resistiendo el calor, las lluvias y hasta mordidas de serpiente. Completó esa disciplina el 7 de agosto de 1961, a los 26 años, cuando decenas de miles de personas se reunieron para recibirlo como maestro autorrealizado.</p>
+        <p>Su gurú le había dado una sola indicación: no dar discursos, solo iniciar en meditación a quien la buscara. A eso dedicó el resto de su vida: durante tres décadas viajó por India y después por Sri Lanka, Inglaterra y Estados Unidos, iniciando de forma gratuita a cientos de miles de personas en una técnica de meditación conocida como <em>Jangama Dhyana</em>. Nunca pidió a nadie cambiar de religión ni adoptar una creencia. Su indicación era simple: siéntate, cierra los ojos y medita.</p>
+        <p>Esa manera de entender la práctica —abierta a cualquiera, sin barreras de fe ni de origen— es una de las raíces del Shanti Lanka Ashram y de la idea que nos sostiene: muchos caminos, una sola intención. Su ashram principal y su samadhi siguen en Adivarapupeta, India.</p>
       </section>
 
       <section class="essence-block">
