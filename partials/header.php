@@ -10,7 +10,6 @@
       <a href="<?= $sla_home ?>#esencia">Nuestra esencia</a>
       <a href="<?= $sla_home ?>#instalaciones">Instalaciones</a>
       <a href="<?= $sla_home ?>#ubicacion">Ubicación</a>
-      <a href="<?= $sla_home ?>#directorio">Directorio</a>
       <a href="<?= $sla_home ?>#practicas">Prácticas</a>
       <a href="<?= $sla_home ?>#eventos">Eventos</a>
       <div class="nav-more" id="navMore">
@@ -31,7 +30,7 @@
       <?php else: ?>
         <a href="admin/login.php" class="header-access">Acceder</a>
       <?php endif; ?>
-      <a href="<?= $sla_home ?>#directorio" class="btn btn-outline btn-sm">Explorar el directorio</a>
+      <a href="calendario.php" class="btn btn-outline btn-sm">Ver el calendario</a>
       <a href="<?= $sla_home ?>#participar" class="btn btn-accent btn-sm">Únirme a la red</a>
     </div>
 
@@ -51,7 +50,6 @@
     <a href="<?= $sla_home ?>#esencia">Nuestra esencia</a>
     <a href="<?= $sla_home ?>#instalaciones">Instalaciones</a>
     <a href="<?= $sla_home ?>#ubicacion">Ubicación</a>
-    <a href="<?= $sla_home ?>#directorio">Directorio</a>
     <a href="<?= $sla_home ?>#practicas">Prácticas</a>
     <a href="<?= $sla_home ?>#eventos">Eventos</a>
     <a href="<?= $sla_home ?>#sabiduria">Shivabalayogi</a>
@@ -59,7 +57,7 @@
     <a href="<?= $sla_home ?>#participar">Participar</a>
   </nav>
   <div class="mobile-panel-actions">
-    <a href="<?= $sla_home ?>#directorio" class="btn btn-outline">Explorar el directorio</a>
+    <a href="calendario.php" class="btn btn-outline">Ver el calendario</a>
     <a href="<?= $sla_home ?>#participar" class="btn btn-accent">Únirme a la red</a>
     <?php if (function_exists('sla_is_logged_in') && sla_is_logged_in()): ?>
       <a href="admin/index.php" class="mobile-access">Panel de administración</a>

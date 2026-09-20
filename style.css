@@ -1160,6 +1160,17 @@ p{ margin: 0 0 1em; max-width: 65ch; }
   .essence-founder{ grid-template-columns: 1fr; }
   .essence-founder img{ max-width: 220px; }
 }
+.essence-photo-wide{
+  margin: 0 0 14px;
+}
+.essence-photo-wide img{
+  width:100%;
+  aspect-ratio: 3/2;
+  object-fit:cover;
+  object-position:center;
+  border-radius: var(--radius);
+  border: 3px solid var(--gold);
+}
 .essence-actions{
   display:flex;
   gap:12px;

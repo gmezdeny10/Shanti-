@@ -16,7 +16,7 @@ $enviado  = $_GET['mensaje'] ?? '';
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Karla:wght@300;400;500;600&family=Caveat:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=11">
+<link rel="stylesheet" href="style.css?v=12">
 </head>
 <body>
 
@@ -37,7 +37,7 @@ $enviado  = $_GET['mensaje'] ?? '';
       <h1>Muchos caminos.<br>Una sola intención: <span class="script">amar.</span></h1>
       <p class="hero-sub">Conectamos personas, prácticas, culturas y saberes que contribuyen al crecimiento humano y al despertar espiritual.</p>
       <div class="hero-actions">
-        <a href="#directorio" class="btn btn-gold">Explorar la comunidad</a>
+        <a href="#eventos" class="btn btn-gold">Explorar la comunidad</a>
         <a href="#esencia" class="btn btn-ghost-light">Conocer nuestra esencia</a>
       </div>
       <p class="scroll-hint">Desliza con calma <span class="scroll-arrow" aria-hidden="true"></span></p>
@@ -85,11 +85,11 @@ $enviado  = $_GET['mensaje'] ?? '';
   <section class="guide" id="guia">
     <div class="container split guide-split">
       <div class="guide-img">
-        <img src="images/swami-kena.jpg" alt="Swami Kena, guía espiritual del Shanti Lanka Ashram">
+        <img src="images/swami-kena.jpg" alt="Swami Kenananda, guía espiritual del Shanti Lanka Ashram">
       </div>
       <div class="guide-copy">
         <p class="eyebrow">Guía espiritual</p>
-        <h2>Swami Kena</h2>
+        <h2>Swami Kenananda</h2>
         <p class="lead">Al frente del Shanti Lanka Ashram, sosteniendo el espacio donde se encuentran los distintos caminos.</p>
         <p>Su presencia guía las prácticas de meditación, silencio y servicio que dan forma a esta comunidad, acompañando a quienes llegan buscando un lugar donde caminar junto a otros.</p>
         <a href="#esencia" class="link-arrow">Conocer su enseñanza →</a>
@@ -151,69 +151,6 @@ $enviado  = $_GET['mensaje'] ?? '';
           referrerpolicy="no-referrer-when-downgrade"
           title="Ubicación del Shanti Lanka Ashram">
         </iframe>
-      </div>
-    </div>
-  </section>
-
-  <!-- DIRECTORIO -->
-  <section class="directory" id="directorio">
-    <div class="container">
-      <p class="eyebrow">Directorio holístico internacional</p>
-      <h2>Encuentra un camino cerca de ti.</h2>
-      <p class="lead">Practicantes, centros, terapeutas, asociaciones, ONG, colectivos, comunidades, pueblos originarios, facilitadores y proyectos sustentables en un mismo lugar.</p>
-      <a href="#lista-directorio" class="btn btn-dark">Buscar en el directorio</a>
-
-      <div class="tag-row">
-        <span class="tag">Meditación</span>
-        <span class="tag">Yoga</span>
-        <span class="tag">Terapias holísticas</span>
-        <span class="tag">Medicina ancestral</span>
-        <span class="tag">Sonoterapia</span>
-        <span class="tag">Movimiento consciente</span>
-        <span class="tag">Respiración</span>
-      </div>
-
-      <div class="card-grid" id="lista-directorio">
-        <article class="card">
-          <div class="card-img"><img src="images/woman-sonoterapia.jpg" alt="Casa del Sendero"></div>
-          <div class="card-body">
-            <p class="eyebrow">Centros holísticos</p>
-            <h3>Casa del Sendero</h3>
-            <p class="location">Nosara, Guanacaste · Costa Rica</p>
-            <p>Una casa abierta entre el bosque seco y el mar donde se practica en silencio y se cocina en comunidad.</p>
-            <p class="meta">Meditación · Yoga · Vida comunitaria<br>Español, Inglés — Presencial y virtual</p>
-            <a href="#contacto" class="link-arrow">Conocer este espacio →</a>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="card-img"><img src="images/practica-9773.jpg" alt="Tejido de Raíces"></div>
-          <div class="card-body">
-            <p class="eyebrow">Pueblos originarios</p>
-            <h3>Tejido de Raíces</h3>
-            <p class="location">Valle Sagrado, Cusco · Perú</p>
-            <p>Colectivo de familias tejedoras que comparte su conocimiento textil y su relación con la tierra.</p>
-            <p class="meta">Medicina ancestral · Arte espiritual · Prácticas regenerativas<br>Español, Quechua — Presencial</p>
-            <a href="#contacto" class="link-arrow">Conocer este espacio →</a>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="card-img"><img src="images/practica-0609.jpg" alt="Ananda Vihara"></div>
-          <div class="card-body">
-            <p class="eyebrow">Comunidades</p>
-            <h3>Ananda Vihara</h3>
-            <p class="location">Matara, Provincia Meridional · Sri Lanka</p>
-            <p>Comunidad de práctica y servicio junto al océano, con retiros de silencio y trabajo social.</p>
-            <p class="meta">Meditación · Respiración · Voluntariado y servicio<br>Cingalés, Inglés — Presencial y virtual</p>
-            <a href="#contacto" class="link-arrow">Conocer este espacio →</a>
-          </div>
-        </article>
-      </div>
-
-      <div class="directory-cta">
-        <a href="#contacto" class="btn btn-outline">Ver todo el directorio</a>
-        <a href="#contacto" class="link-arrow">Registrar mi práctica, centro o comunidad</a>
       </div>
     </div>
   </section>
@@ -462,7 +399,7 @@ $enviado  = $_GET['mensaje'] ?? '';
     <div class="container narrow">
       <h2 class="light">No importa desde qué lugar comienza tu camino.<br>Hay una comunidad dispuesta a caminar contigo.</h2>
       <div class="hero-actions center">
-        <a href="#directorio" class="btn btn-gold">Encontrar mi camino</a>
+        <a href="#eventos" class="btn btn-gold">Encontrar mi camino</a>
         <a href="#contacto" class="btn btn-ghost-light">Compartir mi servicio</a>
       </div>
     </div>
@@ -483,14 +420,24 @@ $enviado  = $_GET['mensaje'] ?? '';
       <h2 id="esenciaTitulo">La historia del Shanti Lanka Ashram</h2>
 
       <section class="essence-block">
+        <h3>¿Qué significa nuestro nombre?</h3>
+        <p>Nuestro nombre está formado por tres palabras: <strong>Shanti</strong> (paz), <strong>Lanka</strong> (isla) y <strong>Ashram</strong>.</p>
+        <p>¿Y qué es un ashram? Un ashram es un lugar sagrado, muy distinto de un hotel. Representa la oportunidad de alejarse de los asuntos del mundo y volver a una forma de vida más sencilla. Es un espacio para nutrir el alma, profundizar la práctica espiritual y despertar al verdadero Ser. ¡Un ashram es un lugar de libertad interior!</p>
+        <p>Este Ashram está dedicado a nuestro amado maestro Shri Shivabalayogi Maharaj, a su devoto discípulo Swami Kenananda, y a las profundas enseñanzas de innumerables santos y yoguis venerados a través de diversos linajes y tradiciones.</p>
+      </section>
+
+      <section class="essence-block">
         <h3>Cómo nació este lugar</h3>
+        <div class="essence-photo-wide">
+          <img src="images/construccion-ashram.jpg" alt="Construcción del Shanti Lanka Ashram en Lagunas de Chacahua">
+        </div>
         <p><em>[Texto pendiente: aquí va la historia del ashram — cómo empezó, en qué año, quiénes llegaron primero y cómo se fue construyendo el lugar frente al mar en Lagunas de Chacahua.]</em></p>
       </section>
 
       <section class="essence-block">
         <h3>El fundador</h3>
         <div class="essence-founder">
-          <img src="images/swami-kena.jpg" alt="Swami Kena, fundador del Shanti Lanka Ashram">
+          <img src="images/swami-kena.jpg" alt="Swami Kenananda, fundador del Shanti Lanka Ashram">
           <div>
             <p><em>[Texto pendiente: aquí va la historia del fundador — su camino, su formación, cómo llegó a Oaxaca y qué lo movió a abrir este espacio.]</em></p>
           </div>

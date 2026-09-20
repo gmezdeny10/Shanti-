@@ -12,7 +12,6 @@
 
     <div class="footer-col">
       <p class="eyebrow eyebrow-light">Explorar</p>
-      <a href="<?= $sla_home ?>#directorio">Directorio</a>
       <a href="<?= $sla_home ?>#practicas">Prácticas</a>
       <a href="<?= $sla_home ?>#eventos">Eventos</a>
       <a href="<?= $sla_home ?>#proyectos">Proyectos</a>
