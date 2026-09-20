@@ -3,8 +3,7 @@
   <div class="container footer-grid">
     <div class="footer-brand">
       <a href="index.php" class="logo logo-light">
-        <span class="logo-mark"><span class="logo-dot"></span></span>
-        <span class="logo-text">Shanti Lanka<br><em>Ashram</em></span>
+        <img src="images/logo-shanti-lanka.png" alt="Shanti Lanka Ashram" class="logo-img">
       </a>
       <a href="mailto:Shantilankamexico@gmail.com" class="footer-email">Shantilankamexico@gmail.com</a>
       <a href="https://maps.app.goo.gl/TmAgH5whnUUCua7o7" target="_blank" rel="noopener" class="footer-address">Lagunas de Chacahua, Oaxaca · México</a>

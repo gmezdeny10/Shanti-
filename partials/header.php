@@ -2,8 +2,7 @@
 <header class="site-header" id="siteHeader">
   <div class="header-inner">
     <a href="index.php" class="logo">
-      <span class="logo-mark"><span class="logo-dot"></span></span>
-      <span class="logo-text">Shanti Lanka<br><em>Ashram</em></span>
+      <img src="images/logo-shanti-lanka.png" alt="Shanti Lanka Ashram" class="logo-img">
     </a>
 
     <nav class="main-nav" id="mainNav">

@@ -201,26 +201,17 @@ p{ margin: 0 0 1em; max-width: 65ch; }
   gap: clamp(16px, 2vw, 32px);
 }
 .logo{ display:flex; align-items:center; gap:10px; flex-shrink:0; }
-.logo-mark{
-  width:36px; height:36px;
-  border-radius:50%;
-  border: 1px solid var(--gold-soft);
-  display:flex; align-items:center; justify-content:center;
-  flex-shrink:0;
+.logo-img{
+  height: 42px;
+  width: auto;
+  display:block;
+  /* El logo es líneas negras sobre fondo transparente: se invierte a
+     blanco cuando va sobre el hero oscuro o el pie de página, y vuelve
+     a su color original (negro) cuando el header tiene fondo claro. */
+  filter: brightness(0) invert(1);
+  transition: filter .3s ease;
 }
-.site-header.scrolled .logo-mark,
-.site-footer .logo-mark{ border-color: var(--gold-strong); }
-.logo-dot{ width:6px; height:6px; border-radius:50%; background: var(--gold); }
-.logo-text{
-  font-family: var(--font-serif);
-  font-size: 1.05rem;
-  color: var(--cream);
-  line-height:1.15;
-  white-space: nowrap;
-}
-.site-header.scrolled .logo-text{ color: var(--charcoal); }
-.logo-text em{ font-style:normal; font-size:.7rem; letter-spacing:.22em; opacity:.8; }
-.logo-light .logo-text{ color: var(--cream); }
+.site-header.scrolled .logo-img{ filter: none; }
 
 /* Desktop nav: single row, center-flexed, never wraps */
 .main-nav{
@@ -1200,11 +1191,10 @@ p{ margin: 0 0 1em; max-width: 65ch; }
   box-shadow: 0 1px 0 var(--border);
 }
 .subpage .site-header .main-nav a,
-.subpage .site-header .nav-more-trigger,
-.subpage .site-header .logo-text{ color: var(--charcoal); }
+.subpage .site-header .nav-more-trigger{ color: var(--charcoal); }
 .subpage .site-header .btn-outline{ border-color: var(--teal-deep); color: var(--teal-deep); }
 .subpage .site-header .hamburger span{ background: var(--charcoal); }
-.subpage .site-header .logo-mark{ border-color: var(--gold-strong); }
+.subpage .site-header .logo-img{ filter: none; }
 
 /* ---- ficha de evento ---- */
 .event-hero{
@@ -1225,8 +1215,8 @@ p{ margin: 0 0 1em; max-width: 65ch; }
   border: 3px solid var(--gold);
   background: var(--charcoal);
 }
-.event-carousel-track{ aspect-ratio: 4/5; max-height: 620px; }
-.event-carousel-slide{ width:100%; height:100%; }
+.event-carousel-track{ position:relative; width:100%; aspect-ratio: 4/5; max-height: 620px; }
+.event-carousel-slide{ position:absolute; inset:0; }
 .event-carousel-slide img{ width:100%; height:100%; object-fit:cover; object-position:center; display:block; }
 .carousel-arrow{
   position:absolute; top:50%; transform: translateY(-50%);
