@@ -24,36 +24,39 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ---------- Ventana "Nuestra esencia" ---------- */
-  const esenciaBackdrop = document.getElementById('esenciaBackdrop');
-  const disparadores    = [...document.querySelectorAll('#abrirEsencia, #abrirEsencia2')];
-  const cerrarEsencia   = document.getElementById('cerrarEsencia');
-  const esenciaContacto = document.getElementById('esenciaContacto');
+  /* ---------- Ventanas modales de "esencia" (ashram y Shivabalayogi) ---------- */
+  const initEssenceModal = (backdropId, triggerSelector, closeId) => {
+    const backdrop = document.getElementById(backdropId);
+    const disparadores = [...document.querySelectorAll(triggerSelector)];
+    const cerrarBtn = document.getElementById(closeId);
+    if (!backdrop || !disparadores.length) return;
 
-  if (esenciaBackdrop && disparadores.length) {
     const abrir = () => {
-      esenciaBackdrop.classList.add('open');
-      esenciaBackdrop.setAttribute('aria-hidden', 'false');
+      backdrop.classList.add('open');
+      backdrop.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
-      if (cerrarEsencia) cerrarEsencia.focus();
+      if (cerrarBtn) cerrarBtn.focus();
     };
     const cerrar = () => {
-      esenciaBackdrop.classList.remove('open');
-      esenciaBackdrop.setAttribute('aria-hidden', 'true');
+      backdrop.classList.remove('open');
+      backdrop.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
     };
 
     disparadores.forEach(btn => btn.addEventListener('click', abrir));
-    if (cerrarEsencia) cerrarEsencia.addEventListener('click', cerrar);
-    if (esenciaContacto) esenciaContacto.addEventListener('click', cerrar);
+    if (cerrarBtn) cerrarBtn.addEventListener('click', cerrar);
+    backdrop.querySelectorAll('.essence-actions a').forEach(link => link.addEventListener('click', cerrar));
 
-    esenciaBackdrop.addEventListener('click', (e) => {
-      if (e.target === esenciaBackdrop) cerrar();
+    backdrop.addEventListener('click', (e) => {
+      if (e.target === backdrop) cerrar();
     });
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && esenciaBackdrop.classList.contains('open')) cerrar();
+      if (e.key === 'Escape' && backdrop.classList.contains('open')) cerrar();
     });
-  }
+  };
+
+  initEssenceModal('esenciaBackdrop', '#abrirEsencia', 'cerrarEsencia');
+  initEssenceModal('shivaBackdrop', '#abrirEsencia2', 'cerrarShiva');
 
   /* ---------- Mobile side panel ---------- */
   const hamburger = document.getElementById('hamburger');

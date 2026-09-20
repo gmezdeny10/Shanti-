@@ -118,18 +118,6 @@ function sla_migrate(PDO $pdo): void
         )
     ");
 
-    // Contenido inicial de ejemplo, solo la primera vez.
-    $count = (int) $pdo->query('SELECT COUNT(*) FROM events')->fetchColumn();
-    if ($count === 0) {
-        $seed = $pdo->prepare("
-            INSERT INTO events (title, event_date, kind, location, modality, organizer, capacity, price_note, description, image)
-            VALUES (?,?,?,?,?,?,?,?,?,?)
-        ");
-        $seed->execute(['Retiro de silencio junto al océano', '2026-09-12', 'Retiro', 'Matara, Sri Lanka', 'Presencial', 'Ananda Vihara', 18, 'Aporte sugerido 120 USD', 'Días de práctica en silencio frente al mar, con meditación guiada al amanecer y al atardecer.', 'images/practica-9794.jpg']);
-        $seed->execute(['Círculo de tejido y palabra', '2026-09-27', 'Encuentro cultural', 'Valle Sagrado, Perú', 'Presencial', 'Tejido de Raíces', 25, 'Aporte libre', 'Un círculo para tejer, escuchar historias y compartir el conocimiento textil de las familias del valle.', 'images/meditacion-facilitador.jpg']);
-        $seed->execute(['Baño de sonido y respiración', '2026-10-05', 'Taller', 'Oaxaca, México', 'Presencial y virtual', 'Círculo de Agua', 30, 'Tarifa escalonada', 'Una sesión de sonoterapia con cuencos y handpan, acompañada de ejercicios de respiración consciente.', 'images/instalaciones-yoga-2.jpg']);
-    }
-
     // Evento real "Retiro de Bhakti": se crea una sola vez (no es contenido de
     // ejemplo, así que se agrega exista o no ya la base de datos, pero sin
     // duplicarse si esta migración se vuelve a ejecutar).

@@ -498,14 +498,6 @@ $enviado  = $_GET['mensaje'] ?? '';
       </section>
 
       <section class="essence-block">
-        <h3>Shri Shivabalayogi Maharaj</h3>
-        <p>Shivabalayogi Maharaj (24 de enero de 1935 – 28 de marzo de 1994) nació como Sathyaraju Allaka en Adivarapupeta, un pueblo de familias tejedoras en Andhra Pradesh, India. Perdió a su padre siendo niño; lo crió su madre junto a su abuelo, y desde muy joven trabajó tejiendo para ayudar en casa.</p>
-        <p>En 1949, con catorce años, comenzó lo que en la tradición se llama <em>tapas</em>: doce años de meditación ininterrumpida —veintitrés horas al día durante los primeros ocho años, doce horas al día los últimos cuatro— sin moverse de su sitio, resistiendo el calor, las lluvias y hasta mordidas de serpiente. Completó esa disciplina el 7 de agosto de 1961, a los 26 años, cuando decenas de miles de personas se reunieron para recibirlo como maestro autorrealizado.</p>
-        <p>Su gurú le había dado una sola indicación: no dar discursos, solo iniciar en meditación a quien la buscara. A eso dedicó el resto de su vida: durante tres décadas viajó por India y después por Sri Lanka, Inglaterra y Estados Unidos, iniciando de forma gratuita a cientos de miles de personas en una técnica de meditación conocida como <em>Jangama Dhyana</em>. Nunca pidió a nadie cambiar de religión ni adoptar una creencia. Su indicación era simple: siéntate, cierra los ojos y medita.</p>
-        <p>Esa manera de entender la práctica —abierta a cualquiera, sin barreras de fe ni de origen— es una de las raíces del Shanti Lanka Ashram y de la idea que nos sostiene: muchos caminos, una sola intención. Su ashram principal y su samadhi siguen en Adivarapupeta, India.</p>
-      </section>
-
-      <section class="essence-block">
         <h3>Lo que sostenemos hoy</h3>
         <p><em>[Texto pendiente: en qué se ha convertido el ashram hoy, qué se practica, quiénes forman la comunidad y hacia dónde va.]</em></p>
       </section>
@@ -518,8 +510,31 @@ $enviado  = $_GET['mensaje'] ?? '';
   </div>
 </div>
 
+<div class="essence-backdrop" id="shivaBackdrop" aria-hidden="true">
+  <div class="essence-modal" role="dialog" aria-modal="true" aria-labelledby="shivaTitulo">
+    <button type="button" class="essence-close" id="cerrarShiva" aria-label="Cerrar">✕</button>
+
+    <div class="essence-content">
+      <p class="eyebrow">Linaje e inspiración</p>
+      <h2 id="shivaTitulo">Shri Shivabalayogi Maharaj</h2>
+
+      <section class="essence-block">
+        <p>Shivabalayogi Maharaj (24 de enero de 1935 – 28 de marzo de 1994) nació como Sathyaraju Allaka en Adivarapupeta, un pueblo de familias tejedoras en Andhra Pradesh, India. Perdió a su padre siendo niño; lo crió su madre junto a su abuelo, y desde muy joven trabajó tejiendo para ayudar en casa.</p>
+        <p>En 1949, con catorce años, comenzó lo que en la tradición se llama <em>tapas</em>: doce años de meditación ininterrumpida —veintitrés horas al día durante los primeros ocho años, doce horas al día los últimos cuatro— sin moverse de su sitio, resistiendo el calor, las lluvias y hasta mordidas de serpiente. Completó esa disciplina el 7 de agosto de 1961, a los 26 años, cuando decenas de miles de personas se reunieron para recibirlo como maestro autorrealizado.</p>
+        <p>Su gurú le había dado una sola indicación: no dar discursos, solo iniciar en meditación a quien la buscara. A eso dedicó el resto de su vida: durante tres décadas viajó por India y después por Sri Lanka, Inglaterra y Estados Unidos, iniciando de forma gratuita a cientos de miles de personas en una técnica de meditación conocida como <em>Jangama Dhyana</em>. Nunca pidió a nadie cambiar de religión ni adoptar una creencia. Su indicación era simple: siéntate, cierra los ojos y medita.</p>
+        <p>Esa manera de entender la práctica —abierta a cualquiera, sin barreras de fe ni de origen— es una de las raíces del Shanti Lanka Ashram y de la idea que nos sostiene: muchos caminos, una sola intención. Su ashram principal y su samadhi siguen en Adivarapupeta, India.</p>
+      </section>
+
+      <div class="essence-actions">
+        <a href="#esencia" class="btn btn-outline" id="shivaEsencia">Conocer el Shanti Lanka Ashram</a>
+        <a href="#contacto" class="btn btn-gold">Escríbenos</a>
+      </div>
+    </div>
+  </div>
+</div>
+
 <?php include __DIR__ . "/partials/footer.php"; ?>
 
-<script src="script.js?v=4"></script>
+<script src="script.js?v=5"></script>
 </body>
 </html>

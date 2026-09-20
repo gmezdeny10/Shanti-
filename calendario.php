@@ -103,6 +103,6 @@ $hoy           = date('Y-m-d');
 
 <?php include __DIR__ . '/partials/footer.php'; ?>
 
-<script src="script.js?v=4"></script>
+<script src="script.js?v=5"></script>
 </body>
 </html>
