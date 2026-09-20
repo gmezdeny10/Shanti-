@@ -16,7 +16,7 @@ $enviado  = $_GET['mensaje'] ?? '';
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Karla:wght@300;400;500;600&family=Caveat:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=15">
+<link rel="stylesheet" href="style.css?v=16">
 </head>
 <body>
 
@@ -48,17 +48,22 @@ $enviado  = $_GET['mensaje'] ?? '';
   <section class="news-banner" aria-label="Novedades">
     <div class="container news-banner-inner">
       <div class="news-banner-label">
+        <svg class="news-banner-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8L12 2z"/></svg>
         <span class="news-banner-dot" aria-hidden="true"></span>
         Novedades
       </div>
       <div class="news-banner-carousel" data-news-carousel>
         <ul class="news-banner-list">
           <?php if (!$proximos): ?>
-            <li class="news-slide">Pronto anunciaremos las próximas actividades.</li>
+            <li class="news-slide active"><span class="news-chip news-chip-static">Pronto anunciaremos las próximas actividades.</span></li>
           <?php else: foreach ($proximos as $i => $ev): [$d, $m] = sla_date_parts($ev['event_date']); ?>
             <li class="news-slide <?= $i === 0 ? 'active' : '' ?>">
-              <span class="news-date"><?= e($d . ' ' . strtolower($m)) ?></span>
-              <a href="evento.php?id=<?= (int) $ev['id'] ?>"><?= e($ev['title']) ?></a>
+              <a href="evento.php?id=<?= (int) $ev['id'] ?>" class="news-chip">
+                <span class="news-chip-tag">Nuevo</span>
+                <span class="news-date"><?= e($d . ' ' . strtolower($m)) ?></span>
+                <span class="news-title"><?= e($ev['title']) ?></span>
+                <span class="news-chip-arrow" aria-hidden="true">→</span>
+              </a>
             </li>
           <?php endforeach; endif; ?>
         </ul>
