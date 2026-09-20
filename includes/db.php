@@ -129,4 +129,48 @@ function sla_migrate(PDO $pdo): void
         $seed->execute(['Círculo de tejido y palabra', '2026-09-27', 'Encuentro cultural', 'Valle Sagrado, Perú', 'Presencial', 'Tejido de Raíces', 25, 'Aporte libre', 'Un círculo para tejer, escuchar historias y compartir el conocimiento textil de las familias del valle.', 'images/meditacion-facilitador.jpg']);
         $seed->execute(['Baño de sonido y respiración', '2026-10-05', 'Taller', 'Oaxaca, México', 'Presencial y virtual', 'Círculo de Agua', 30, 'Tarifa escalonada', 'Una sesión de sonoterapia con cuencos y handpan, acompañada de ejercicios de respiración consciente.', 'images/instalaciones-yoga-2.jpg']);
     }
+
+    // Evento real "Retiro de Bhakti": se crea una sola vez (no es contenido de
+    // ejemplo, así que se agrega exista o no ya la base de datos, pero sin
+    // duplicarse si esta migración se vuelve a ejecutar).
+    $existeBhakti = (int) $pdo->query("SELECT COUNT(*) FROM events WHERE title = 'Retiro de Bhakti'")->fetchColumn();
+    if ($existeBhakti === 0) {
+        $descripcionBhakti = "Retírate del ruido. Regresa a tu corazón.\n\n"
+            . "Del 3 al 7 de diciembre vive una experiencia de 5 días y 4 noches junto al mar, "
+            . "creada para profundizar en tu práctica de yoga, abrir tu voz y conectar contigo.\n\n"
+            . "¿Qué incluye la experiencia?\n"
+            . "– Yoga y meditación todos los días: Hatha Yoga, serie Rishikesh\n"
+            . "– Taller de Mantras: descubre su simbolismo y significado profundo, y experimenta el poder de cantarlos\n"
+            . "– Taller de Canto Elemental: conecta con tu autenticidad, encuentra tu voz y aprende a expresarte desde tu esencia\n"
+            . "– Satsangs mañana y noche: filosofía y sabiduría védica para profundizar en tu práctica\n\n"
+            . "Experiencias nocturnas: sound healing, kirtan, círculo de fuego e integración, ceremonia de apertura y bienvenida.\n\n"
+            . "Además disfrutarás de alimentación vegetariana, hospedaje en el Ashram Shanti Lanka, "
+            . "paseo en lancha por la laguna, y naturaleza y mar.\n\n"
+            . "5 días para desconectar de afuera y reconectar contigo. Para quienes desean explorar el Bhakti Yoga, "
+            . "abrirse al canto y a la devoción, profundizar en su práctica y compartir una experiencia transformadora en comunidad.\n\n"
+            . "Cupo limitado.";
+
+        $seedBhakti = $pdo->prepare("
+            INSERT INTO events (title, event_date, kind, location, modality, organizer, capacity, price_note, description, image, images)
+            VALUES (?,?,?,?,?,?,?,?,?,?,?)
+        ");
+        $seedBhakti->execute([
+            'Retiro de Bhakti',
+            '2026-12-03',
+            'Retiro',
+            'Isla de Chacahua, Oaxaca',
+            'Presencial',
+            'Shanti Lanka Ashram',
+            0,
+            '',
+            $descripcionBhakti,
+            'images/retiro-bhakti-1.webp',
+            json_encode([
+                'images/retiro-bhakti-1.webp',
+                'images/retiro-bhakti-2.webp',
+                'images/retiro-bhakti-3.webp',
+                'images/retiro-bhakti-4.webp',
+            ], JSON_UNESCAPED_SLASHES),
+        ]);
+    }
 }
