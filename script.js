@@ -303,4 +303,32 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }, { passive: true });
   }
+
+  /* ---------- Carrusel de fotos del evento ---------- */
+  document.querySelectorAll('[data-carousel]').forEach((carousel) => {
+    const slides = [...carousel.querySelectorAll('.event-carousel-slide')];
+    const dots   = [...carousel.querySelectorAll('[data-carousel-dot]')];
+    if (slides.length < 2) return;
+
+    let indice = 0;
+
+    const mostrar = (i) => {
+      indice = (i + slides.length) % slides.length;
+      slides.forEach((slide, n) => { slide.hidden = n !== indice; });
+      dots.forEach((dot, n) => dot.classList.toggle('active', n === indice));
+    };
+
+    carousel.querySelector('[data-carousel-prev]')?.addEventListener('click', () => mostrar(indice - 1));
+    carousel.querySelector('[data-carousel-next]')?.addEventListener('click', () => mostrar(indice + 1));
+    dots.forEach((dot, n) => dot.addEventListener('click', () => mostrar(n)));
+
+    let touchStartX = 0;
+    carousel.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].clientX;
+    }, { passive: true });
+    carousel.addEventListener('touchend', (e) => {
+      const delta = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(delta) > 40) mostrar(indice + (delta < 0 ? 1 : -1));
+    }, { passive: true });
+  });
 });

@@ -52,7 +52,7 @@ $lugares   = $evento && $evento['capacity'] ? max(0, (int) $evento['capacity'] -
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Karla:wght@300;400;500;600&family=Caveat:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=9">
+<link rel="stylesheet" href="style.css?v=10">
 </head>
 <body class="subpage">
 
@@ -71,8 +71,26 @@ $lugares   = $evento && $evento['capacity'] ? max(0, (int) $evento['capacity'] -
       <p class="eyebrow"><?= e($d . ' ' . $m) ?> · <?= e($evento['kind']) ?></p>
       <h1 class="subpage-title"><?= e($evento['title']) ?></h1>
 
-      <?php if ($evento['image']): ?>
-        <div class="event-hero"><img src="<?= e($evento['image']) ?>" alt="<?= e($evento['title']) ?>"></div>
+      <?php $galeria = sla_event_gallery($evento); ?>
+      <?php if (count($galeria) > 1): ?>
+        <div class="event-carousel" data-carousel>
+          <div class="event-carousel-track">
+            <?php foreach ($galeria as $i => $foto): ?>
+              <div class="event-carousel-slide" <?= $i === 0 ? '' : 'hidden' ?>>
+                <img src="<?= e($foto) ?>" alt="<?= e($evento['title']) ?> — foto <?= $i + 1 ?> de <?= count($galeria) ?>">
+              </div>
+            <?php endforeach; ?>
+          </div>
+          <button type="button" class="carousel-arrow prev" data-carousel-prev aria-label="Foto anterior">‹</button>
+          <button type="button" class="carousel-arrow next" data-carousel-next aria-label="Foto siguiente">›</button>
+          <div class="carousel-dots" data-carousel-dots>
+            <?php foreach ($galeria as $i => $foto): ?>
+              <button type="button" class="carousel-dot <?= $i === 0 ? 'active' : '' ?>" data-carousel-dot="<?= $i ?>" aria-label="Ir a la foto <?= $i + 1 ?>"></button>
+            <?php endforeach; ?>
+          </div>
+        </div>
+      <?php elseif ($galeria): ?>
+        <div class="event-hero"><img src="<?= e($galeria[0]) ?>" alt="<?= e($evento['title']) ?>"></div>
       <?php endif; ?>
 
       <dl class="event-facts">
@@ -128,6 +146,6 @@ $lugares   = $evento && $evento['capacity'] ? max(0, (int) $evento['capacity'] -
 
 <?php include __DIR__ . '/partials/footer.php'; ?>
 
-<script src="script.js?v=3"></script>
+<script src="script.js?v=4"></script>
 </body>
 </html>

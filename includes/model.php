@@ -59,7 +59,7 @@ function sla_find_event(int $id): ?array
 function sla_save_event(array $data, ?int $id = null): int
 {
     $fields = ['title', 'event_date', 'kind', 'location', 'modality', 'organizer',
-               'capacity', 'price_note', 'description', 'image', 'is_published'];
+               'capacity', 'price_note', 'description', 'image', 'images', 'is_published'];
 
     $values = [];
     foreach ($fields as $f) {
@@ -85,6 +85,21 @@ function sla_delete_event(int $id): void
 {
     $stmt = sla_db()->prepare('DELETE FROM events WHERE id = ?');
     $stmt->execute([$id]);
+}
+
+/**
+ * Galería de fotos de un evento, para mostrarla como carrusel en su ficha.
+ * Si el evento tiene varias imágenes guardadas (columna `images`, en JSON) se
+ * usan esas; si no, se cae de vuelta a la imagen de portada (`image`), para
+ * que los eventos antiguos con una sola foto sigan funcionando igual.
+ */
+function sla_event_gallery(array $evento): array
+{
+    $lista = json_decode($evento['images'] ?? '', true);
+    if (is_array($lista) && $lista) {
+        return array_values(array_filter(array_map('strval', $lista)));
+    }
+    return $evento['image'] ? [$evento['image']] : [];
 }
 
 /* ---------- inscripciones ---------- */

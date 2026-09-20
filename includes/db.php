@@ -71,10 +71,17 @@ function sla_migrate(PDO $pdo): void
             price_note   TEXT NOT NULL DEFAULT '',
             description  TEXT NOT NULL DEFAULT '',
             image        TEXT NOT NULL DEFAULT '',
+            images       TEXT NOT NULL DEFAULT '',
             is_published INTEGER NOT NULL DEFAULT 1,
             created_at   TEXT NOT NULL DEFAULT (datetime('now'))
         )
     ");
+
+    // Bases creadas antes de que existiera la galería de imágenes (carrusel) por evento.
+    $eventCols = array_column($pdo->query('PRAGMA table_info(events)')->fetchAll(), 'name');
+    if (!in_array('images', $eventCols, true)) {
+        $pdo->exec("ALTER TABLE events ADD COLUMN images TEXT NOT NULL DEFAULT ''");
+    }
 
     $pdo->exec("
         CREATE TABLE IF NOT EXISTS messages (

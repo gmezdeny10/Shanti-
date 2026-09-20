@@ -16,6 +16,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         [$subida, $errorSubida] = sla_handle_upload('imagen_archivo');
         $imagen = $subida ?? trim($_POST['image'] ?? '');
 
+        // Galería / carrusel: se parte de las imágenes que ya tenía el evento,
+        // se quitan las marcadas para eliminar y se agregan las nuevas subidas.
+        $galeriaActual = $id ? sla_event_gallery(sla_find_event($id) ?? []) : [];
+        $quitar        = array_map('strval', $_POST['quitar_galeria'] ?? []);
+        $galeriaActual = array_values(array_diff($galeriaActual, $quitar));
+        [$nuevasFotos, $erroresGaleria] = sla_handle_uploads('galeria_archivos');
+        $galeria = array_values(array_unique(array_merge($galeriaActual, $nuevasFotos)));
+
         $data = [
             'title'        => trim($_POST['title'] ?? ''),
             'event_date'   => trim($_POST['event_date'] ?? ''),
@@ -27,11 +35,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'price_note'   => trim($_POST['price_note'] ?? ''),
             'description'  => trim($_POST['description'] ?? ''),
             'image'        => $imagen,
+            'images'       => json_encode($galeria, JSON_UNESCAPED_SLASHES),
             'is_published' => isset($_POST['is_published']) ? 1 : 0,
         ];
 
         if ($errorSubida) {
             $notice = $errorSubida;
+        } elseif ($erroresGaleria) {
+            $notice = implode(' ', $erroresGaleria);
         } elseif ($data['title'] === '' || $data['event_date'] === '') {
             $notice = 'El título y la fecha son obligatorios.';
         } else {
@@ -141,6 +152,24 @@ sla_admin_header('Eventos', 'eventos.php');
               Imagen actual:
               <img src="../<?= e($editing['image']) ?>" alt="Imagen actual del evento">
             </span>
+          <?php endif; ?>
+        </label>
+
+        <label class="col-2">Galería / carrusel del evento
+          <span class="field-hint">Sube varias fotos para que se muestren como carrusel en la ficha del evento. La imagen de portada de arriba es la que aparece en la lista de eventos y en el calendario.</span>
+
+          <input type="file" name="galeria_archivos[]" accept="image/jpeg,image/png,image/webp" class="file-input" multiple>
+
+          <?php $galeriaActual = $editing ? sla_event_gallery($editing) : []; ?>
+          <?php if ($galeriaActual): ?>
+            <div class="gallery-manager mt-8">
+              <?php foreach ($galeriaActual as $foto): ?>
+                <label class="gallery-thumb">
+                  <img src="../<?= e($foto) ?>" alt="Foto de la galería">
+                  <span><input type="checkbox" name="quitar_galeria[]" value="<?= e($foto) ?>"> Quitar</span>
+                </label>
+              <?php endforeach; ?>
+            </div>
           <?php endif; ?>
         </label>
 

@@ -25,8 +25,12 @@ function sla_handle_upload(string $field): array
         return [null, null]; // no se subió nada: no es un error
     }
 
-    $file = $_FILES[$field];
+    return sla_handle_upload_file($_FILES[$field]);
+}
 
+/** Validación y guardado de un solo archivo ya extraído de $_FILES. */
+function sla_handle_upload_file(array $file): array
+{
     if ($file['error'] !== UPLOAD_ERR_OK) {
         $motivos = [
             UPLOAD_ERR_INI_SIZE   => 'La imagen supera el tamaño permitido por el servidor.',
@@ -77,6 +81,47 @@ function sla_handle_upload(string $field): array
     }
 
     return [SLA_UPLOAD_URL . '/' . $nombre, null];
+}
+
+/**
+ * Igual que sla_handle_upload(), pero para un input con varias imágenes a la
+ * vez (name="campo[]" multiple). Se usa para la galería/carrusel de un evento.
+ *
+ * @return array{0: string[], 1: string[]}  [rutasGuardadas, mensajesDeError]
+ */
+function sla_handle_uploads(string $field): array
+{
+    if (empty($_FILES[$field]) || !is_array($_FILES[$field]['name'] ?? null)) {
+        return [[], []];
+    }
+
+    $total   = count($_FILES[$field]['name']);
+    $rutas   = [];
+    $errores = [];
+
+    for ($i = 0; $i < $total; $i++) {
+        if (($_FILES[$field]['error'][$i] ?? UPLOAD_ERR_NO_FILE) === UPLOAD_ERR_NO_FILE) {
+            continue; // ese campo del formulario se dejó vacío
+        }
+
+        $archivo = [
+            'name'     => $_FILES[$field]['name'][$i],
+            'type'     => $_FILES[$field]['type'][$i],
+            'tmp_name' => $_FILES[$field]['tmp_name'][$i],
+            'error'    => $_FILES[$field]['error'][$i],
+            'size'     => $_FILES[$field]['size'][$i],
+        ];
+
+        [$ruta, $error] = sla_handle_upload_file($archivo);
+        if ($ruta) {
+            $rutas[] = $ruta;
+        }
+        if ($error) {
+            $errores[] = $error;
+        }
+    }
+
+    return [$rutas, $errores];
 }
 
 /** Imágenes disponibles: las del sitio y las subidas desde el panel. */
