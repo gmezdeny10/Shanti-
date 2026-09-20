@@ -24,6 +24,44 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  /* ---------- Carrusel de la barra de Novedades ---------- */
+  const newsCarousel = document.querySelector('[data-news-carousel]');
+  if (newsCarousel) {
+    const slides = [...newsCarousel.querySelectorAll('.news-slide')];
+    const dots = [...newsCarousel.querySelectorAll('[data-news-dot]')];
+
+    if (slides.length > 1) {
+      let indice = slides.findIndex(s => s.classList.contains('active'));
+      if (indice < 0) indice = 0;
+      let temporizador = null;
+
+      const mostrar = (i) => {
+        indice = (i + slides.length) % slides.length;
+        slides.forEach((s, n) => s.classList.toggle('active', n === indice));
+        dots.forEach((d, n) => d.classList.toggle('active', n === indice));
+      };
+      const siguiente = () => mostrar(indice + 1);
+
+      const iniciar = () => {
+        if (prefersReducedMotion) return;
+        detener();
+        temporizador = setInterval(siguiente, 4500);
+      };
+      const detener = () => {
+        if (temporizador) clearInterval(temporizador);
+        temporizador = null;
+      };
+
+      dots.forEach((dot, n) => dot.addEventListener('click', () => { mostrar(n); iniciar(); }));
+      newsCarousel.addEventListener('mouseenter', detener);
+      newsCarousel.addEventListener('mouseleave', iniciar);
+      newsCarousel.addEventListener('focusin', detener);
+      newsCarousel.addEventListener('focusout', iniciar);
+
+      iniciar();
+    }
+  }
+
   /* ---------- Ventanas modales de "esencia" (ashram y Shivabalayogi) ---------- */
   const initEssenceModal = (backdropId, triggerSelector, closeId) => {
     const backdrop = document.getElementById(backdropId);

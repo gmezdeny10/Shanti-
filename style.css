@@ -1396,11 +1396,25 @@ p{ margin: 0 0 1em; max-width: 65ch; }
   50%{ box-shadow: 0 0 0 6px rgba(247,183,63,0); }
 }
 .news-banner{
+  position:relative;
+  overflow:hidden;
   background: var(--gradient-turquoise);
   padding: clamp(28px, 4vw, 44px) 0;
   border-top: 3px solid var(--gold);
 }
+.news-banner::before{
+  content:"";
+  position:absolute;
+  top:0; left:-45%;
+  width:35%; height:100%;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,.16), transparent);
+  transform: skewX(-12deg);
+  animation: newsShine 6s ease-in-out infinite;
+  pointer-events:none;
+}
 .news-banner-inner{
+  position:relative;
+  z-index:1;
   display:flex;
   align-items:center;
   flex-wrap:wrap;
@@ -1416,29 +1430,41 @@ p{ margin: 0 0 1em; max-width: 65ch; }
   text-transform: uppercase;
   font-weight: 700;
   color: var(--gold);
+  padding: 7px 16px 7px 12px;
+  border-radius: 999px;
+  background: rgba(0,0,0,.14);
+  border: 1px solid rgba(247,183,63,.4);
 }
 .news-banner-dot{
-  width: 10px; height:10px;
+  position:relative;
+  width: 9px; height:9px;
   border-radius:50%;
   background: var(--gold);
-  animation: newsDotPulse 2.2s ease-in-out infinite;
+  box-shadow: 0 0 0 0 rgba(247,183,63,.6);
+  animation: newsDotPulse 2s ease-out infinite;
 }
-.news-banner-list{
-  display:flex;
-  flex-wrap:wrap;
-  align-items:center;
-  gap: 14px clamp(24px, 3vw, 44px);
+.news-banner-carousel{
+  position:relative;
   flex: 1 1 auto;
   min-width: 0;
+  overflow:hidden;
 }
-.news-banner-list li{
-  display:flex;
+.news-banner-list{ position:relative; }
+.news-slide{
+  display:none;
   align-items:baseline;
   gap: 10px;
-  font-size: 1.08rem;
+  font-size: 1.15rem;
+  font-weight: 500;
   color: var(--cream);
   white-space: nowrap;
 }
+.news-slide.active{
+  display:flex;
+  animation: newsSlideIn .5s cubic-bezier(.16,1,.3,1) both;
+}
+.news-slide a{ text-decoration: underline; text-decoration-color: rgba(246,236,217,.4); text-underline-offset: 3px; transition: text-decoration-color .25s ease, color .25s ease; }
+.news-slide a:hover{ color: var(--gold); text-decoration-color: var(--gold); }
 .news-date{
   font-size: .82rem;
   letter-spacing: .08em;
@@ -1446,6 +1472,21 @@ p{ margin: 0 0 1em; max-width: 65ch; }
   font-weight: 700;
   color: var(--gold);
 }
+.news-banner-dots{
+  display:flex;
+  gap:6px;
+  margin-top:8px;
+}
+.news-banner-tick{
+  width:16px; height:3px;
+  border-radius:2px;
+  border:none;
+  padding:0;
+  background: rgba(246,236,217,.3);
+  cursor:pointer;
+  transition: background .25s ease, width .25s ease;
+}
+.news-banner-tick.active{ background: var(--gold); width:26px; }
 .news-banner-link{
   flex-shrink:0;
   font-size: 1rem;
@@ -1460,12 +1501,27 @@ p{ margin: 0 0 1em; max-width: 65ch; }
 
 @media (max-width: 720px){
   .news-banner-inner{ flex-direction:column; align-items:flex-start; gap: 10px; }
-  .news-banner-list{ flex-direction:column; align-items:flex-start; gap: 8px; }
   .news-banner-link{ margin-left: 0; }
 }
 
+@keyframes newsShine{
+  0%, 45%{ left:-45%; }
+  55%, 100%{ left:120%; }
+}
+@keyframes newsDotPulse{
+  0%{ box-shadow: 0 0 0 0 rgba(247,183,63,.6); }
+  70%{ box-shadow: 0 0 0 8px rgba(247,183,63,0); }
+  100%{ box-shadow: 0 0 0 0 rgba(247,183,63,0); }
+}
+@keyframes newsSlideIn{
+  from{ opacity:0; transform: translateY(6px); }
+  to{ opacity:1; transform: translateY(0); }
+}
+
 @media (prefers-reduced-motion: reduce){
-  .news-banner-dot{ animation: none !important; }
+  .news-banner-dot{ animation: none !important; box-shadow: 0 0 0 3px rgba(247,183,63,.35) !important; }
+  .news-banner::before{ animation: none !important; display:none; }
+  .news-slide.active{ animation: none !important; }
 }
 
 /* ---- WhatsApp floating button ---- */

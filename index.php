@@ -16,7 +16,7 @@ $enviado  = $_GET['mensaje'] ?? '';
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Karla:wght@300;400;500;600&family=Caveat:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=14">
+<link rel="stylesheet" href="style.css?v=15">
 </head>
 <body>
 
@@ -44,23 +44,32 @@ $enviado  = $_GET['mensaje'] ?? '';
     </div>
   </section>
 
-  <!-- NOVEDADES (banner informativo, no popup) -->
+  <!-- NOVEDADES (banner informativo, con carrusel si hay varios encuentros) -->
   <section class="news-banner" aria-label="Novedades">
     <div class="container news-banner-inner">
       <div class="news-banner-label">
         <span class="news-banner-dot" aria-hidden="true"></span>
         Novedades
       </div>
-      <ul class="news-banner-list">
-        <?php if (!$proximos): ?>
-          <li>Pronto anunciaremos las próximas actividades.</li>
-        <?php else: foreach ($proximos as $ev): [$d, $m] = sla_date_parts($ev['event_date']); ?>
-          <li>
-            <span class="news-date"><?= e($d . ' ' . strtolower($m)) ?></span>
-            <a href="evento.php?id=<?= (int) $ev['id'] ?>"><?= e($ev['title']) ?></a>
-          </li>
-        <?php endforeach; endif; ?>
-      </ul>
+      <div class="news-banner-carousel" data-news-carousel>
+        <ul class="news-banner-list">
+          <?php if (!$proximos): ?>
+            <li class="news-slide">Pronto anunciaremos las próximas actividades.</li>
+          <?php else: foreach ($proximos as $i => $ev): [$d, $m] = sla_date_parts($ev['event_date']); ?>
+            <li class="news-slide <?= $i === 0 ? 'active' : '' ?>">
+              <span class="news-date"><?= e($d . ' ' . strtolower($m)) ?></span>
+              <a href="evento.php?id=<?= (int) $ev['id'] ?>"><?= e($ev['title']) ?></a>
+            </li>
+          <?php endforeach; endif; ?>
+        </ul>
+        <?php if (count($proximos) > 1): ?>
+          <div class="news-banner-dots" data-news-dots>
+            <?php foreach ($proximos as $i => $ev): ?>
+              <button type="button" class="news-banner-tick <?= $i === 0 ? 'active' : '' ?>" data-news-dot="<?= $i ?>" aria-label="Ver novedad <?= $i + 1 ?>"></button>
+            <?php endforeach; ?>
+          </div>
+        <?php endif; ?>
+      </div>
       <a href="#eventos" class="news-banner-link">Ver todos los eventos →</a>
     </div>
   </section>
@@ -482,6 +491,6 @@ $enviado  = $_GET['mensaje'] ?? '';
 
 <?php include __DIR__ . "/partials/footer.php"; ?>
 
-<script src="script.js?v=5"></script>
+<script src="script.js?v=6"></script>
 </body>
 </html>
