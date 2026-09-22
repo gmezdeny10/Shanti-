@@ -85,7 +85,7 @@ $enviado  = $_GET['mensaje'] ?? '';
       <p class="eyebrow">Manifiesto</p>
       <h2>Un puente entre culturas, corazones y experiencias.</h2>
       <p class="lead">Shanti Lanka Ashram nace para acercar los distintos caminos del crecimiento espiritual.</p>
-      <p>Creamos conexiones entre quienes buscan alternativas y quienes comparten prácticas, conocimientos, espacios y formas de servicio alrededor del mundo.</p>
+      <p>Creamos conexiones entre quienes buscan alternativas y quienes comparten prácticas, conocimientos, espacios y formas de servicio en todo México.</p>
     </div>
     <div class="ticker">
       <span>PAZ</span><span class="divider"></span>
@@ -286,7 +286,7 @@ $enviado  = $_GET['mensaje'] ?? '';
   <!-- NETWORK -->
   <section class="network" id="proyectos">
     <div class="container narrow">
-      <p class="eyebrow eyebrow-light">Red global</p>
+      <p class="eyebrow eyebrow-light">Red nacional</p>
       <h2 class="light">Una constelación humana en movimiento.</h2>
     </div>
     <div class="map-graphic">
@@ -349,17 +349,17 @@ $enviado  = $_GET['mensaje'] ?? '';
         <article class="story-card">
           <span class="story-mark" aria-hidden="true">“</span>
           <p class="quote">Vine buscando silencio y encontré vecinas con las que ahora construimos una escuela.</p>
-          <p class="author">Nadeesha — Matara, Sri Lanka</p>
+          <p class="author">Ana — Puerto Escondido, Oaxaca</p>
         </article>
         <article class="story-card">
           <span class="story-mark" aria-hidden="true">“</span>
           <p class="quote">Nadie me pidió creer en algo. Solo me hicieron un lugar en el círculo.</p>
-          <p class="author">Marisol — Bogotá, Colombia</p>
+          <p class="author">Marisol — Ciudad de México</p>
         </article>
         <article class="story-card">
           <span class="story-mark" aria-hidden="true">“</span>
           <p class="quote">Contamos de dónde viene cada color de nuestro tejido. Esa es nuestra manera de compartir.</p>
-          <p class="author">Aurelio — Cusco, Perú</p>
+          <p class="author">Aurelio — Los Altos de Chiapas</p>
         </article>
       </div>
     </div>
@@ -452,12 +452,72 @@ $enviado  = $_GET['mensaje'] ?? '';
         <p>Este Ashram está dedicado a nuestro amado maestro Shri Shivabalayogi Maharaj, a su devoto discípulo Swami Kenananda, y a las profundas enseñanzas de innumerables santos y yoguis venerados a través de diversos linajes y tradiciones.</p>
       </section>
 
-      <section class="essence-block">
+      <section class="essence-block essence-story">
         <h3>Cómo nació este lugar</h3>
         <div class="essence-photo-wide">
           <img src="images/construccion-ashram.jpg" alt="Construcción del Shanti Lanka Ashram en Lagunas de Chacahua">
         </div>
-        <p><em>[Texto pendiente: aquí va la historia del ashram — cómo empezó, en qué año, quiénes llegaron primero y cómo se fue construyendo el lugar frente al mar en Lagunas de Chacahua.]</em></p>
+
+        <h4>El viaje que llevó a Shanti Lanka</h4>
+        <p>La historia de Shanti Lanka comenzó mucho antes de que existiera un terreno, un edificio o un ashram.</p>
+        <p>Después de siete años practicando meditación y estudiando con Swami Kenananda, tuve la oportunidad de viajar con él en giras por Estados Unidos, Colombia y México, donde nos invitaban a enseñar meditación.</p>
+        <p>Durante esos viajes, muchas veces serví como traductor de Swami. Tuve la oportunidad de escuchar con atención las preguntas que la gente le hacía y de presenciar su sincero deseo de comprender más profundamente la meditación, el yoga y el camino espiritual.</p>
+        <p>Una y otra vez, la gente preguntaba:</p>
+        <blockquote class="essence-quote">
+          <p>“¿Hay algún lugar al que podamos ir para aprender más?”</p>
+          <p>“¿Hay un lugar donde podamos practicar meditación?”</p>
+          <p>“¿Dónde podemos estudiar estas enseñanzas y aprender a vivir una vida espiritual?”</p>
+        </blockquote>
+        <p>Me di cuenta de que no tenía ningún lugar que recomendar.</p>
+        <p>Después de aproximadamente tres meses viajando con Swami, regresé a casa, a Seattle. Las preguntas se quedaron conmigo.</p>
+        <p>Empecé a preguntarme si realmente existían lugares en México donde alguien pudiera adentrarse profundamente en la meditación, la filosofía del yoga y una forma de vida espiritual.</p>
+
+        <h4>La búsqueda por México</h4>
+        <p>Después de completar un retiro de Vipassana de diez días, hice mis maletas y regresé a México.</p>
+        <p>Lo que comenzó como una búsqueda se convirtió en un viaje de ocho meses.</p>
+        <p>Recorrí México de norte a sur, visitando distintos lugares y buscando comunidades, centros y personas dedicadas a la meditación, el yoga y la práctica espiritual.</p>
+        <p>Encontré algunos lugares. Había personas practicando meditación y yoga, y había distintas comunidades espirituales, pero todavía no había encontrado lo que buscaba.</p>
+        <p>Buscaba algo más profundo: un lugar donde una persona no solo pudiera asistir a una clase o a un retiro, sino aprender lo que significa vivir una vida espiritual.</p>
+        <p>Después de aproximadamente ocho meses de viaje, un amigo me invitó a visitar Chacahua, en la costa de Oaxaca. Decidí ir.</p>
+
+        <h4>Chacahua</h4>
+        <p>Cuando llegué a Chacahua, algo se sintió diferente.</p>
+        <p>La tierra todavía estaba prácticamente intacta. El entorno natural, el océano, las lagunas y la quietud del lugar creaban una atmósfera que se sentía a la vez poderosa y serena.</p>
+        <p>Durante una de mis prácticas de meditación allí, tuve lo que entendí como un mensaje interior muy claro:</p>
+        <blockquote class="essence-quote is-message">
+          <p>“Si no puedes encontrar lo que buscas, entonces créalo y muestra el camino.”</p>
+        </blockquote>
+        <p>Esa experiencia se convirtió en un momento decisivo en mi vida.</p>
+        <p>Empecé a ver Chacahua no simplemente como un lugar hermoso, sino como un posible hogar para el tipo de comunidad espiritual que había estado buscando durante mis viajes.</p>
+
+        <h4>La conversación con Swami</h4>
+        <p>Después de dejar Chacahua, me reuní de nuevo con Swami Kenananda en Tepoztlán, México.</p>
+        <p>Le conté sobre mi viaje de ocho meses por México. Le expliqué lo que había estado buscando y lo que había descubierto. Luego le hablé de mi experiencia en Chacahua.</p>
+        <p>Le dije que pensaba que allí se podía crear un ashram. Chacahua era un lugar poderoso, pero al mismo tiempo sereno. Parecía un sitio donde las personas podían apartarse de su vida cotidiana y dedicar tiempo a la meditación, el yoga, el estudio y la práctica espiritual.</p>
+        <p>Swami escuchó. Su primera respuesta no fue de aliento.</p>
+        <blockquote class="essence-quote">
+          <p>“¿Cómo vas a construir un ashram?”</p>
+          <p>“¿Y después qué? ¿Vas a cambiar a la gente para que vaya allá?”</p>
+          <p>“No, Erik. Recuerda la misión de Swami G.”</p>
+        </blockquote>
+        <p>Esas palabras se quedaron conmigo.</p>
+
+        <h4>Tres días de preguntas</h4>
+        <p>Durante los tres días siguientes, sucedió algo interesante.</p>
+        <p>Cada mañana, Swami y yo salíamos a tomar un café. Y cada mañana, él me hacía preguntas sobre Chacahua.</p>
+        <blockquote class="essence-quote">
+          <p>“¿Cómo era ese lugar?”</p>
+          <p>“¿Por qué quieres hacer esto?”</p>
+        </blockquote>
+        <p>Seguía pidiéndome que mirara más a fondo: no solo la idea de construir un ashram físico, sino la razón detrás de ella.</p>
+        <p>Empecé a entender que la pregunta no era simplemente <em>“¿puedo construir un ashram?”</em>. La pregunta más profunda era: <em>¿por qué?</em></p>
+        <p>¿Era para mí mismo? ¿Era para crear otro lugar que la gente pudiera visitar? ¿O era para crear un espacio donde las personas tuvieran la oportunidad de descubrir la meditación, el estudio, el servicio y una forma más profunda de vivir?</p>
+        <p>Esas preguntas se convirtieron en parte de los cimientos de lo que con el tiempo llegaría a ser Shanti Lanka.</p>
+
+        <div class="essence-closing">
+          <p>El ashram no comenzó con un edificio. Comenzó con una búsqueda.</p>
+          <p>Comenzó con siete años de práctica, con viajes junto a Swami por Estados Unidos, Colombia y México, con tres meses de enseñar y traducir, con ocho meses recorriendo México, y con una pregunta que no me dejaba en paz.</p>
+        </div>
       </section>
 
       <section class="essence-block">

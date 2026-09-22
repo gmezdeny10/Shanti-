@@ -1187,6 +1187,62 @@ p{ margin: 0 0 1em; max-width: 65ch; }
   border-bottom: 1px solid var(--border);
 }
 .essence-block p{ color: var(--muted); max-width: none; }
+
+/* ---- Historia del ashram (relato largo dentro de la ventana) ---- */
+.essence-story p{ max-width: 62ch; }
+.essence-story h4{
+  display: flex;
+  align-items: center;
+  gap: .7em;
+  margin: 2em 0 .7em;
+  font-family: var(--font-serif);
+  font-size: 1.08rem;
+  font-weight: 400;
+  color: var(--teal-mid);
+}
+.essence-story h4::before{
+  content: "";
+  flex: none;
+  width: 22px;
+  height: 2px;
+  background: var(--gold);
+}
+.essence-story h4:first-of-type{ margin-top: 1.2em; }
+.essence-quote{
+  margin: 1.2em 0;
+  padding: .1em 0 .1em 1.1em;
+  border-left: 2px solid var(--gold-soft);
+}
+.essence-quote p{
+  margin: 0 0 .45em;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.02rem;
+  color: var(--teal-mid);
+}
+.essence-quote p:last-child{ margin-bottom: 0; }
+.essence-quote.is-message{
+  padding: .9em 0 .9em 1.3em;
+  border-left: 3px solid var(--gold);
+}
+.essence-quote.is-message p{
+  font-size: clamp(1.12rem, 2.2vw, 1.3rem);
+  font-style: normal;
+  line-height: 1.45;
+  color: var(--teal-deep);
+}
+.essence-closing{
+  margin-top: 2.2em;
+  padding-top: 1.4em;
+  border-top: 1px solid var(--border);
+}
+.essence-closing p{
+  font-family: var(--font-serif);
+  font-size: 1.06rem;
+  line-height: 1.6;
+  color: var(--teal-deep);
+  max-width: 62ch;
+}
 .essence-founder{
   display:grid;
   grid-template-columns: 190px 1fr;
