@@ -1,0 +1,11 @@
+{
+  "files.exclude": {
+    "data/*.sqlite": true
+  },
+  "files.associations": {
+    "*.php": "php"
+  },
+  "emmet.includeLanguages": {
+    "php": "html"
+  }
+}

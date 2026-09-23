@@ -1,0 +1,55 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Arrancar el sitio",
+      "detail": "Levanta el servidor de PHP en http://localhost:8422 y abre el navegador",
+      "type": "shell",
+      "command": "php",
+      "args": ["-S", "localhost:8422", "-t", "."],
+      "options": { "cwd": "${workspaceFolder}" },
+      "isBackground": true,
+      "group": { "kind": "build", "isDefault": true },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      },
+      "problemMatcher": {
+        "owner": "php",
+        "pattern": [
+          {
+            "regexp": "^PHP (?:Parse|Fatal) error:\\s+(.*) in (.*) on line (\\d+)$",
+            "message": 1,
+            "file": 2,
+            "line": 3
+          }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "Development Server \\(http",
+          "endsPattern": "Development Server \\(http.*\\) started"
+        }
+      }
+    },
+    {
+      "label": "Revisar sintaxis de todo el PHP",
+      "detail": "Pasa php -l por cada archivo del proyecto",
+      "type": "shell",
+      "command": "find . -name '*.php' -not -path './.git/*' -print0 | xargs -0 -n1 php -l",
+      "options": { "cwd": "${workspaceFolder}" },
+      "group": "test",
+      "presentation": { "reveal": "always", "panel": "dedicated", "clear": true },
+      "problemMatcher": []
+    },
+    {
+      "label": "Empezar de cero (borrar la base de datos)",
+      "detail": "Borra data/shanti.sqlite. Se vuelve a crear sola al abrir el sitio. Cuidado: se pierden inscripciones y mensajes.",
+      "type": "shell",
+      "command": "rm -f data/shanti.sqlite && echo 'Base de datos borrada. Al abrir el sitio se crea de nuevo; entra a /admin/instalar.php para crear tu cuenta.'",
+      "options": { "cwd": "${workspaceFolder}" },
+      "presentation": { "reveal": "always", "panel": "dedicated", "clear": true },
+      "problemMatcher": []
+    }
+  ]
+}

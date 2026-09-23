@@ -1,0 +1,21 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Ver el sitio",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:8422",
+      "webRoot": "${workspaceFolder}",
+      "preLaunchTask": "Arrancar el sitio"
+    },
+    {
+      "name": "Ver el panel de administración",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:8422/admin/",
+      "webRoot": "${workspaceFolder}",
+      "preLaunchTask": "Arrancar el sitio"
+    }
+  ]
+}
