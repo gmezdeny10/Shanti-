@@ -48,6 +48,28 @@ Luego abre <http://localhost:8422>.
 La primera vez, entra a `/admin/instalar.php` para crear la cuenta de
 administración. La base de datos se crea sola en `data/`.
 
+### Con Docker
+
+Si prefieres no instalar PHP:
+
+```bash
+docker compose up
+```
+
+Luego abre <http://localhost:8422>. Para pararlo, `Ctrl+C`.
+
+Esta vía usa Apache, así que el `.htaccess` sí se aplica —igual que en el
+hosting— y puedes comprobar las reglas de seguridad antes de publicar. El
+código se monta desde tu carpeta: guardas un archivo y el cambio se ve al
+recargar, sin reconstruir nada.
+
+La base de datos y las imágenes subidas viven en volúmenes de Docker, así que
+sobreviven a `docker compose down`. Para borrarlas y empezar de cero:
+
+```bash
+docker compose down -v
+```
+
 ---
 
 ## Seguridad

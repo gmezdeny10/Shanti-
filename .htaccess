@@ -8,7 +8,7 @@
 DirectoryIndex index.php index.html
 
 # ---- Bloquear archivos internos ----
-<FilesMatch "\.(sqlite|ini|bat|md|log)$">
+<FilesMatch "(\.(sqlite|ini|bat|md|log|sh|ya?ml|dist)|^Dockerfile|^\.dockerignore|^\.gitignore)$">
     <IfModule mod_authz_core.c>
         Require all denied
     </IfModule>
@@ -25,7 +25,11 @@ Options -Indexes
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
-    # Si el hosting tiene certificado, forzar https
+    # Si el hosting tiene certificado, forzar https.
+    # En local (Docker, XAMPP) no, o entraría en redirección infinita.
+    RewriteCond %{HTTP_HOST} !^localhost [NC]
+    RewriteCond %{HTTP_HOST} !^127\.0\.0\.1 [NC]
+    RewriteCond %{HTTP_HOST} !^host\.docker\.internal [NC]
     RewriteCond %{HTTPS} off
     RewriteCond %{HTTP:X-Forwarded-Proto} !https
     RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]

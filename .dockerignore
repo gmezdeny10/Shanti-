@@ -1,0 +1,18 @@
+.git
+.github
+.vscode
+data
+images/subidas
+node_modules
+*.sqlite
+*.sqlite3
+*.db
+*.log
+*.tmp
+php-local.ini
+router.php
+serve.py
+"INICIAR SITIO.bat"
+Thumbs.db
+desktop.ini
+.DS_Store

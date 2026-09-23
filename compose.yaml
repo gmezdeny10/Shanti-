@@ -1,0 +1,20 @@
+# Levanta el sitio en http://localhost:8422
+#   docker compose up
+services:
+  sitio:
+    build: .
+    image: shanti-lanka-ashram
+    container_name: shanti-lanka
+    ports:
+      - "8422:80"
+    volumes:
+      # El proyecto entero, para que los cambios se vean sin reconstruir
+      - .:/var/www/html
+      # Estas dos quedan fuera del montaje: son datos, no código
+      - datos:/var/www/html/data
+      - subidas:/var/www/html/images/subidas
+    restart: unless-stopped
+
+volumes:
+  datos:
+  subidas:
