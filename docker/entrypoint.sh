@@ -8,4 +8,9 @@ for dir in /var/www/html/data /var/www/html/images/subidas; do
     chown -R www-data:www-data "$dir" 2>/dev/null || true
 done
 
+# Encadenar con el arranque propio de la imagen de PHP, no sustituirlo.
+if [ -x /usr/local/bin/docker-php-entrypoint ]; then
+    exec /usr/local/bin/docker-php-entrypoint "$@"
+fi
+
 exec "$@"
