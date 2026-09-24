@@ -14,7 +14,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && docker-php-ext-configure gd --with-jpeg --with-freetype \
     && docker-php-ext-install -j"$(nproc)" gd mbstring pdo_sqlite \
     && a2enmod rewrite headers \
-    && apt-get purge -y --auto-remove \
     && rm -rf /var/lib/apt/lists/*
 
 # Sin AllowOverride, Apache ignoraría el .htaccess
